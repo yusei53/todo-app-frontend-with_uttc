@@ -1,10 +1,29 @@
-import { Heading } from "@chakra-ui/react";
+"use client";
+import useSWR from "swr";
+import NotFound from "./not-found";
+import Loading from "./loading";
+
+type User = {
+  id: number;
+  title: string;
+  deleted: boolean;
+};
+
+async function fetcher(key: string) {
+  return fetch(key).then((res) => res.json() as Promise<User[] | null>);
+}
 
 const Home = () => {
+  const { data, error } = useSWR("http://localhost:8083/boards", fetcher);
+
+  if (error) return <NotFound />;
+  if (!data) return <Loading />;
   return (
-    <Heading as="h1" size="xl">
-      Hello World
-    </Heading>
+    <div>
+      {data.map((user) => (
+        <div key={user.id}>{user.title}</div>
+      ))}
+    </div>
   );
 };
 

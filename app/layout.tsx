@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ChakraProvider } from "@chakra-ui/provider";
 // import { ChakraProvider } from "@chakra-ui/react";でも良いが、bundleqizeが大きくなるので、@chakra-ui/providerを使って軽量化
+import Header from "./components/Header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,7 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body style={{ margin: 0 }}>
-        <ChakraProvider>{children}</ChakraProvider>
+        <ChakraProvider>
+          <Header />
+          {children}
+        </ChakraProvider>
       </body>
     </html>
   );

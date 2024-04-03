@@ -8,6 +8,7 @@ const Header = () => {
         background={"linear-gradient(to right, #00B5D8, #805AD5)"}
         as="header"
         padding={12}
+        boxShadow={"0 7px 7px rgba(0, 0, 0, 0.05)"}
       >
         <Heading
           as="h1"

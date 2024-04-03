@@ -2,6 +2,7 @@
 import useSWR from "swr";
 import NotFound from "./not-found";
 import Loading from "./loading";
+import { Box } from "@chakra-ui/react";
 
 type User = {
   id: number;
@@ -21,7 +22,7 @@ const Home = () => {
   return (
     <div>
       {data.map((user) => (
-        <div key={user.id}>{user.title}</div>
+        <Box key={user.id}>{user.title}</Box>
       ))}
     </div>
   );

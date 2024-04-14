@@ -1,54 +1,25 @@
-"use client";
-import Loading from "../../loading";
 import { Box } from "@chakra-ui/react";
 import CategoryCard from "../molecules/CategoryCard";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useSearchParams } from "next/navigation";
 import { CategoryProps } from "../../types/type";
 import AddButton from "../atom/AddButton";
-import { useCallback, useState } from "react";
 import TextAreaButtonGroup from "../atom/TextAreaButtonGroup";
 import CategoryCardContainer from "../atom/CategoryCardContainer";
-import { createCategory, fetchCategories } from "@/app/api/categories/queryFn";
 
-const CategoriesArea = () => {
-  const searchParams = useSearchParams();
-  const boardId = Number(searchParams.get("id"));
-  const [newCategoryTitle, setNewCategoryTitle] = useState("");
-  const queryClient = useQueryClient();
+type TProps = {
+  categoryData: CategoryProps[];
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: () => void;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+};
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const { isLoading, data } = useQuery({
-    queryKey: ["categories", boardId],
-    queryFn: () => fetchCategories(boardId),
-  });
-
-  const handleOpen = useCallback(() => {
-    setIsOpen((value) => !value);
-  }, []);
-
-  const createMutation = useMutation({
-    mutationFn: ({
-      boardId,
-      categoryTitle,
-    }: {
-      boardId: number;
-      categoryTitle: string;
-    }) => createCategory(boardId, categoryTitle),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["categories", boardId] });
-      setIsOpen(false);
-    },
-  });
-
-  const handleSave = () => {
-    createMutation.mutate({ boardId, categoryTitle: newCategoryTitle });
-  };
-
-  if (isLoading) return <Loading />;
-  if (!data) return <div>dataがありません</div>;
-
+const CategoriesArea: React.FC<TProps> = ({
+  categoryData,
+  isOpen,
+  onChange,
+  onSave,
+  onClose,
+}) => {
   return (
     <Box overflowX={"auto"} overflowY={"hidden"}>
       <Box
@@ -59,11 +30,11 @@ const CategoriesArea = () => {
         alignItems={"flex-start"}
         height={"100%"}
       >
-        {data.map((categoryData: CategoryProps) => (
+        {categoryData.map((category) => (
           <CategoryCard
-            key={categoryData.id}
-            id={categoryData.id}
-            title={categoryData.title}
+            key={category.id}
+            id={category.id}
+            title={category.title}
           />
         ))}
         {isOpen ? (
@@ -71,9 +42,9 @@ const CategoriesArea = () => {
             <TextAreaButtonGroup
               title={"リストを追加"}
               placeholder={"リストのタイトルを入力"}
-              onChange={(e) => setNewCategoryTitle(e.target.value)}
-              onSave={handleSave}
-              onClose={handleOpen}
+              onChange={onChange}
+              onSave={onSave}
+              onClose={onClose}
             />
           </CategoryCardContainer>
         ) : (
@@ -83,7 +54,7 @@ const CategoriesArea = () => {
             color={"white"}
             minWidth={272}
             sx={{ mx: 2, p: 4 }}
-            handleOpen={handleOpen}
+            onClose={onClose}
           />
         )}
       </Box>

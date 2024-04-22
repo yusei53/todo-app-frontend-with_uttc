@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ChakraProvider } from "@chakra-ui/react";
 import Header from "./components/Header";
-import Main from "./components/Main";
 
 export const metadata: Metadata = {
   title: "uttc × PeachTech",
@@ -18,7 +17,7 @@ export default function RootLayout({
       <body style={{ backgroundColor: "#373D61" }}>
         <ChakraProvider>
           <Header />
-          <Main>{children}</Main>
+          {children}
         </ChakraProvider>
       </body>
     </html>

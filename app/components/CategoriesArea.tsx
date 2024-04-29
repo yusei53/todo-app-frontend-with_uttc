@@ -24,10 +24,12 @@ const CategoriesArea = () => {
   if (error) return <NotFound />;
   if (isLoading) return <Loading />;
   return (
-    <Box display="flex" overflow={"auto"} whiteSpace={"pre"} mt={10}>
-      {data.map((boardData: BoardProps) => (
-        <CategoryCard key={boardData.id} props={boardData} />
-      ))}
+    <Box flex={1}>
+      <Box display="flex" overflow={"auto"} whiteSpace={"pre"} mt={10}>
+        {data.map((boardData: BoardProps) => (
+          <CategoryCard key={boardData.id} props={boardData} />
+        ))}
+      </Box>
     </Box>
   );
 };

@@ -4,11 +4,12 @@ import BoardsArea from "./BoardsArea";
 const SideBarWithBoardsArea = () => {
   return (
     <Box
-      height={"95vh"}
+      height={"92vh"}
       width={"20%"}
       bg={"#496AAF"}
       pt={5}
       boxShadow={"2px 2px 4px"}
+      flex={"none"}
     >
       <Heading
         fontSize={20}

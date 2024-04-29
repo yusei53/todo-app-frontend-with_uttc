@@ -7,12 +7,14 @@ const Header = () => {
         display={"flex"}
         background={"linear-gradient(to right, #00B5D8, #805AD5)"}
         as="header"
-        padding={4}
+        padding={3}
         boxShadow={"0 7px 7px rgba(0, 0, 0, 0.05)"}
       >
         <Heading
+          display={"flex"}
+          alignItems={"center"}
           as="h1"
-          fontSize={"25px"}
+          fontSize={"22px"}
           color={"white"}
           fontWeight={"bold"}
           flexGrow={1}

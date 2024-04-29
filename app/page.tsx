@@ -1,7 +1,7 @@
-import SideBarWithBoardsArea from "./components/SidebarWithBoardsArea";
+import CategoriesArea from "./components/CategoriesArea";
 
 const MainPage = () => {
-  return <SideBarWithBoardsArea />;
+  return <CategoriesArea />;
 };
 
 export default MainPage;

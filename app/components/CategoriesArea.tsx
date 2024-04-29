@@ -24,8 +24,8 @@ const CategoriesArea = () => {
   if (error) return <NotFound />;
   if (isLoading) return <Loading />;
   return (
-    <Box flex={1}>
-      <Box display="flex" overflow={"auto"} whiteSpace={"pre"} mt={10}>
+    <Box flex={1} overflowX={"auto"} whiteSpace={"pre"}>
+      <Box display="flex" mt={10}>
         {data.map((boardData: BoardProps) => (
           <CategoryCard key={boardData.id} props={boardData} />
         ))}

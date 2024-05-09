@@ -3,7 +3,7 @@ import { DeleteIcon } from "@chakra-ui/icons";
 import { BoardProps } from "../types/type";
 import Link from "next/link";
 
-type BoardTitle = Pick<BoardProps, "title">;
+type BoardTitle = Omit<BoardProps, "deleted">;
 
 type TProps = {
   props: BoardTitle;
@@ -11,7 +11,7 @@ type TProps = {
 
 const BoardCard: React.FC<TProps> = ({ props }) => {
   return (
-    <Link href={`/board/${props.title}`}>
+    <Link href={`/board/?id=${props.id}`}>
       <Box
         bg={"#EBECF0"}
         borderRadius={3}

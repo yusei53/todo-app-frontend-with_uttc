@@ -5,18 +5,19 @@ import { Box } from "@chakra-ui/react";
 import CategoryCard from "./CategoryCard";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-
-type BoardProps = {
-  id: number;
-  title: string;
-  deleted: boolean;
-};
+import { useSearchParams } from "next/navigation";
+import { CategoryProps } from "../types/type";
 
 const CategoriesArea = () => {
+  const searchParams = useSearchParams();
+  const categoryName = searchParams.get("id");
+
   const { isLoading, error, data } = useQuery({
-    queryKey: ["boards"],
+    queryKey: ["categories", categoryName],
     queryFn: async () => {
-      const { data } = await axios.get("http://localhost:8083/boards");
+      const { data } = await axios.get(
+        `http://localhost:8083/categories?board_id=${categoryName}`
+      );
       return data;
     },
   });
@@ -26,8 +27,8 @@ const CategoriesArea = () => {
   return (
     <Box flex={1} overflowX={"auto"} whiteSpace={"pre"}>
       <Box display="flex" mt={10}>
-        {data.map((boardData: BoardProps) => (
-          <CategoryCard key={boardData.id} props={boardData} />
+        {data.map((categoryData: CategoryProps) => (
+          <CategoryCard key={categoryData.id} title={categoryData.title} />
         ))}
       </Box>
     </Box>

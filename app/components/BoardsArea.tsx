@@ -17,6 +17,16 @@ async function fetcher(key: string) {
 const BoardsArea = () => {
   const { data, error } = useSWR("http://localhost:8083/boards", fetcher);
 
+  // ReactQueryでの取得
+  // const CategoriesArea = () => {
+  // const { isLoading, error, data } = useQuery({
+  //   queryKey: ["boards"],
+  //   queryFn: async () => {
+  //     const { data } = await axios.get("http://localhost:8083/boards");
+  //     return data;
+  //   },
+  // });
+
   if (error) return <NotFound />;
   if (!data) return <Loading />;
   return (

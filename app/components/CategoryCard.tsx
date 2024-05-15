@@ -1,18 +1,25 @@
 import { Box, Text } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
-import { BoardProps } from "../types/type";
+import { CategoryProps } from "../types/type";
 
-type BoardTitle = Pick<BoardProps, "title">;
+type categoryCardProps = Pick<CategoryProps, "title">;
 
-type TProps = {
-  props: BoardTitle;
-};
-
-const CategoryCard: React.FC<TProps> = ({ props }) => {
+const CategoryCard: React.FC<categoryCardProps> = ({ title }) => {
   return (
-    <Box bgColor={"#EBECF0"} borderRadius={3} mx={5} position={"relative"}>
-      <Box display={"flex"} my={1} mx={4}>
-        <Text pr={222}>{props.title}</Text>
+    <Box
+      w={{
+        base: "50%",
+        md: "40%",
+        lg: "25%",
+      }}
+      bgColor={"#EBECF0"}
+      borderRadius={3}
+      mx={5}
+      p={2}
+      position={"relative"}
+    >
+      <Box display={"flex"}>
+        <Text pr={222}>{title}</Text>
         <Box display={"flex"} alignItems={"center"}>
           <DeleteIcon
             sx={{ cursor: "pointer", position: "absolute", right: 4 }}

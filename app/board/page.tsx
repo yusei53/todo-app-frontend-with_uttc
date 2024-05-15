@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import { CategoryProps } from "../types/type";
+import Loading from "../loading";
 
 const BoardPage = () => {
   const searchParams = useSearchParams();
@@ -11,14 +12,15 @@ const BoardPage = () => {
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["categories", categoryName],
-    queryFn: () =>
-      axios
-        .get(`http://localhost:8083/categories?board_id=${categoryName}`)
-        .then((res) => res.data),
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `http://localhost:8083/categories?board_id=${categoryName}`
+      );
+      return data;
+    },
   });
-  console.log(data);
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <Loading />;
 
   if (error) return "An error has occurred: " + error.message;
 

@@ -1,30 +1,49 @@
 import { Box, Text } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { CategoryProps } from "../types/type";
+import ItemCard from "./ItemCard";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import Loading from "../loading";
 
-type categoryCardProps = Pick<CategoryProps, "title">;
+type categoryCardProps = Pick<CategoryProps, "id" | "title">;
 
-const CategoryCard: React.FC<categoryCardProps> = ({ title }) => {
+const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
+  const { isLoading, data } = useQuery({
+    queryKey: ["items", id],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `http://localhost:8083/items?category_id=${id}`
+      );
+      return data;
+    },
+  });
+
+  if (isLoading) return <Loading />;
+
   return (
     <Box
-      w={{
-        base: "50%",
-        md: "40%",
-        lg: "25%",
-      }}
+      minWidth={272}
       bgColor={"#EBECF0"}
-      borderRadius={3}
+      borderRadius={12}
       mx={5}
       p={2}
       position={"relative"}
     >
       <Box display={"flex"}>
-        <Text pr={222}>{title}</Text>
+        <Text isTruncated whiteSpace={"pre-wrap"}>
+          {title}
+        </Text>
         <Box display={"flex"} alignItems={"center"}>
           <DeleteIcon
             sx={{ cursor: "pointer", position: "absolute", right: 4 }}
           />
         </Box>
+      </Box>
+      <Box my={3}>
+        {data.map((itemData: categoryCardProps) => (
+          <ItemCard key={itemData.id} title={itemData.title} />
+        ))}
       </Box>
       <Text>新しくタスクを追加</Text>
     </Box>

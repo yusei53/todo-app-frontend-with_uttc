@@ -5,7 +5,7 @@ const SideBarWithBoardsArea = () => {
   return (
     <Box
       height={"92vh"}
-      width={"20%"}
+      width={250}
       bg={"#496AAF"}
       pt={5}
       boxShadow={"2px 2px 4px"}

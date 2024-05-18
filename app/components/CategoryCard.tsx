@@ -22,23 +22,16 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
   if (isLoading) return <Loading />;
 
   return (
-    <Box
-      minWidth={272}
-      bgColor={"#EBECF0"}
-      borderRadius={12}
-      mx={5}
-      p={2}
-      position={"relative"}
-    >
-      <Box display={"flex"}>
+    <Box minWidth={272} bgColor={"#EBECF0"} borderRadius={12} mx={5} p={2}>
+      <Box
+        display={"flex"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
         <Text isTruncated whiteSpace={"pre-wrap"}>
           {title}
         </Text>
-        <Box display={"flex"} alignItems={"center"}>
-          <DeleteIcon
-            sx={{ cursor: "pointer", position: "absolute", right: 4 }}
-          />
-        </Box>
+        <DeleteIcon sx={{ cursor: "pointer", mx: 2 }} />
       </Box>
       <Box my={3}>
         {data.map((itemData: categoryCardProps) => (

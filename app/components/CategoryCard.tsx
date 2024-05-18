@@ -22,7 +22,7 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
   if (isLoading) return <Loading />;
 
   return (
-    <Box minWidth={272} bgColor={"#EBECF0"} borderRadius={12} mx={5} p={2}>
+    <Box minWidth={272} bgColor={"#EBECF0"} borderRadius={12} mx={2} p={2}>
       <Box
         display={"flex"}
         justifyContent={"space-between"}

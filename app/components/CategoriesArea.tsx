@@ -27,6 +27,7 @@ const CategoriesArea = () => {
   return (
     <Box overflowX={"auto"} overflowY={"hidden"}>
       <Box
+        mx={3}
         mt={10}
         overflowX={"auto"}
         display={"flex"}

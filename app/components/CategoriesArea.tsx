@@ -10,13 +10,13 @@ import { CategoryProps } from "../types/type";
 
 const CategoriesArea = () => {
   const searchParams = useSearchParams();
-  const categoryName = searchParams.get("id");
+  const boardId = searchParams.get("id");
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["categories", categoryName],
+    queryKey: ["categories", boardId],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:8083/categories?board_id=${categoryName}`
+        `http://localhost:8083/categories?board_id=${boardId}`
       );
       return data;
     },
@@ -28,7 +28,11 @@ const CategoriesArea = () => {
     <Box flex={1} overflowX={"auto"} whiteSpace={"pre"}>
       <Box display="flex" mt={10}>
         {data.map((categoryData: CategoryProps) => (
-          <CategoryCard key={categoryData.id} title={categoryData.title} />
+          <CategoryCard
+            key={categoryData.id}
+            id={categoryData.id}
+            title={categoryData.title}
+          />
         ))}
       </Box>
     </Box>

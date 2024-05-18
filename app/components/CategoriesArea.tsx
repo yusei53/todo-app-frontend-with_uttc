@@ -25,8 +25,14 @@ const CategoriesArea = () => {
   if (error) return <NotFound />;
   if (isLoading) return <Loading />;
   return (
-    <Box flex={1} overflowX={"auto"} whiteSpace={"pre"}>
-      <Box display="flex" mt={10}>
+    <Box overflowX={"auto"} overflowY={"hidden"}>
+      <Box
+        mt={10}
+        overflowX={"auto"}
+        display={"flex"}
+        alignItems={"flex-start"}
+        height={"100%"}
+      >
         {data.map((categoryData: CategoryProps) => (
           <CategoryCard
             key={categoryData.id}

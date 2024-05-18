@@ -10,3 +10,12 @@ export type CategoryProps = {
   title: string;
   deleted: boolean;
 };
+
+export type ItemProps = {
+  id: number;
+  categoryId: number;
+  title: string;
+  content: string;
+  expiredAt: string;
+  archived: boolean;
+};

@@ -15,19 +15,21 @@ const BoardCard: React.FC<TProps> = ({ props }) => {
       <Box
         bg={"#EBECF0"}
         borderRadius={3}
-        m={5}
-        position={"relative"}
         transition={"0.3s"}
+        display={"flex"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        py={1}
+        px={3}
+        my={3}
         _hover={{ bg: "#6AA7E3" }}
       >
-        <Box display={"flex"} mx={2} py={1.5}>
-          <Text>{props.title}</Text>
-          <Box display={"flex"} alignItems={"center"}>
-            <DeleteIcon
-              sx={{ cursor: "pointer", position: "absolute", right: 4 }}
-            />
-          </Box>
-        </Box>
+        <Text>{props.title}</Text>
+        <DeleteIcon
+          boxSize={3.5}
+          _hover={{ transform: "scale(1.2)" }}
+          sx={{ cursor: "pointer", mx: 1, transition: "0.3s" }}
+        />
       </Box>
     </Link>
   );

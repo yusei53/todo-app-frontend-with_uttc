@@ -1,7 +1,5 @@
-import CategoriesArea from "./components/CategoriesArea";
-
 const MainPage = () => {
-  return <CategoriesArea />;
+  return <div>投稿しましょう</div>;
 };
 
 export default MainPage;

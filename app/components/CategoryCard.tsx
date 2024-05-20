@@ -1,5 +1,5 @@
-import { Box, Text } from "@chakra-ui/react";
-import { DeleteIcon } from "@chakra-ui/icons";
+import { Box, Button, Text } from "@chakra-ui/react";
+import { AddIcon, DeleteIcon } from "@chakra-ui/icons";
 import { CategoryProps } from "../types/type";
 import ItemCard from "./ItemCard";
 import { useQuery } from "@tanstack/react-query";
@@ -31,14 +31,32 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
         <Text isTruncated whiteSpace={"pre-wrap"}>
           {title}
         </Text>
-        <DeleteIcon sx={{ cursor: "pointer", mx: 2 }} />
+        <DeleteIcon
+          boxSize={3.5}
+          _hover={{ transform: "scale(1.2)" }}
+          sx={{ cursor: "pointer", mx: 2, transition: "0.3s" }}
+        />
       </Box>
       <Box my={3}>
         {data.map((itemData: categoryCardProps) => (
           <ItemCard key={itemData.id} title={itemData.title} />
         ))}
       </Box>
-      <Text>新しくタスクを追加</Text>
+      <Button
+        width={"100%"}
+        fontSize={"small"}
+        bgColor={"transparent"}
+        size={"sm"}
+        px={1.5}
+        display={"flex"}
+        justifyContent={"flex-start"}
+        leftIcon={
+          <AddIcon boxSize={2.5} _hover={{ transform: "scale(1.3)" }} />
+        }
+        _hover={{ bg: "#D9DBDF" }}
+      >
+        カードを追加
+      </Button>
     </Box>
   );
 };

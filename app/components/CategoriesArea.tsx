@@ -1,5 +1,4 @@
 "use client";
-import NotFound from "../not-found";
 import Loading from "../loading";
 import { Box } from "@chakra-ui/react";
 import CategoryCard from "./CategoryCard";
@@ -12,7 +11,7 @@ const CategoriesArea = () => {
   const searchParams = useSearchParams();
   const boardId = searchParams.get("id");
 
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ["categories", boardId],
     queryFn: async () => {
       const { data } = await axios.get(
@@ -22,12 +21,12 @@ const CategoriesArea = () => {
     },
   });
 
-  if (error) return <NotFound />;
   if (isLoading) return <Loading />;
+  if (!data) return <div>dataがありません</div>;
   return (
     <Box overflowX={"auto"} overflowY={"hidden"}>
       <Box
-        mx={3}
+        pl={3}
         mt={10}
         overflowX={"auto"}
         display={"flex"}

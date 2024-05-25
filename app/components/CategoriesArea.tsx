@@ -23,6 +23,7 @@ const CategoriesArea = () => {
 
   if (isLoading) return <Loading />;
   if (!data) return <div>dataがありません</div>;
+
   return (
     <Box overflowX={"auto"} overflowY={"hidden"}>
       <Box

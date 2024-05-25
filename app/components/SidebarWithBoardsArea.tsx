@@ -46,10 +46,11 @@ const SideBarWithBoardsArea = () => {
   return (
     <Box
       height={"92vh"}
-      width={250}
+      minWidth={250}
       bg={"#496AAF"}
       p={5}
       boxShadow={"2px 2px 4px"}
+      position={"sticky"}
     >
       <Box
         display={"flex"}

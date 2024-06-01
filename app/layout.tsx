@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Box } from "@chakra-ui/react";
-import Header from "./components/Header";
-import SideBarWithBoardsArea from "./components/SidebarWithBoardsArea";
+import Header from "./components/common/Header";
+import SideBarWithBoardsArea from "./components/organisms/SidebarWithBoardsArea";
 import { Providers } from "./provider";
 
 export const metadata: Metadata = {

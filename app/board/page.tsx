@@ -1,4 +1,4 @@
-import CategoriesArea from "../components/CategoriesArea";
+import CategoriesArea from "../components/organisms/CategoriesArea";
 
 const BoardPage = () => {
   return <CategoriesArea />;

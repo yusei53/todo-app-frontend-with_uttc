@@ -1,11 +1,11 @@
 "use client";
-import Loading from "../loading";
+import Loading from "../../loading";
 import { Box } from "@chakra-ui/react";
-import CategoryCard from "./CategoryCard";
+import CategoryCard from "../molecules/CategoryCard";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import { CategoryProps } from "../types/type";
+import { CategoryProps } from "../../types/type";
 
 const CategoriesArea = () => {
   const searchParams = useSearchParams();

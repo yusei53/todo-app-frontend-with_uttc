@@ -2,14 +2,14 @@
 import { Box, Heading, useDisclosure } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import useSWR from "swr";
-import Loading from "../loading";
-import NotFound from "../not-found";
-import BoardCard from "./BoardCard";
-import { BoardProps } from "../types/type";
+import Loading from "../../loading";
+import NotFound from "../../not-found";
+import { BoardProps } from "../../types/type";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
-import CreateBoardModal from "./CreateBoardModal";
+import CreateBoardModal from "../molecules/CreateBoardModal";
+import BoardCard from "../molecules/BoardCard";
 
 async function fetcher(key: string) {
   return fetch(key).then((res) => res.json() as Promise<BoardProps[] | null>);

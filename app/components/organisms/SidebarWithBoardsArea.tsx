@@ -1,47 +1,47 @@
 "use client";
 import { Box, Heading, useDisclosure } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
-import useSWR from "swr";
 import Loading from "../../loading";
-import NotFound from "../../not-found";
 import { BoardProps } from "../../types/type";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import CreateBoardModal from "../molecules/CreateBoardModal";
 import BoardCard from "../molecules/BoardCard";
 
-async function fetcher(key: string) {
-  return fetch(key).then((res) => res.json() as Promise<BoardProps[] | null>);
-}
+// async function fetcher(key: string) {
+//   return fetch(key).then((res) => res.json() as Promise<BoardProps[] | null>);
+// }
 
 const SideBarWithBoardsArea = () => {
-  const { data, error } = useSWR("http://localhost:8083/boards", fetcher);
+  // const { data, error } = useSWR("http://localhost:8083/boards", fetcher);
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  // ReactQueryでの取得
-  // const CategoriesArea = () => {
-  // const { isLoading, error, data } = useQuery({
-  //   queryKey: ["boards"],
-  //   queryFn: async () => {
-  //     const { data } = await axios.get("http://localhost:8083/boards");
-  //     return data;
-  //   },
-  // });
   const [newBoardName, setNewBoardName] = useState("");
+  const queryClient = useQueryClient();
+
+  const { isLoading, data } = useQuery({
+    queryKey: ["boards"],
+    queryFn: async () => {
+      const { data } = await axios.get("http://localhost:8083/boards");
+      return data;
+    },
+  });
 
   const mutation = useMutation({
     mutationFn: (newBoard: { board_title: string }) => {
       return axios.post("http://localhost:8083/boards", newBoard);
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["boards"] });
+      onClose();
+    },
   });
 
   const handleSave = () => {
     mutation.mutate({ board_title: newBoardName });
-    onClose();
   };
 
-  if (!data) return <Loading />;
+  if (isLoading) return <Loading />;
   return (
     <Box
       height={"92vh"}
@@ -74,8 +74,8 @@ const SideBarWithBoardsArea = () => {
         onChange={(e) => setNewBoardName(e.target.value)}
         onSave={handleSave}
       />
-      {data.map((boardData) => (
-        <BoardCard key={boardData.id} props={boardData} />
+      {data.map((data: BoardProps) => (
+        <BoardCard key={data.id} props={data} />
       ))}
     </Box>
   );

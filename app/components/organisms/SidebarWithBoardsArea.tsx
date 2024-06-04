@@ -31,17 +31,16 @@ const SideBarWithBoardsArea = () => {
   const [newBoardName, setNewBoardName] = useState("");
 
   const mutation = useMutation({
-    mutationFn: (newBoard: { newBoard: string }) => {
+    mutationFn: (newBoard: { board_title: string }) => {
       return axios.post("http://localhost:8083/boards", newBoard);
     },
   });
 
   const handleSave = () => {
-    mutation.mutate({ newBoard: newBoardName });
+    mutation.mutate({ board_title: newBoardName });
     onClose();
   };
 
-  if (error) return <NotFound />;
   if (!data) return <Loading />;
   return (
     <Box

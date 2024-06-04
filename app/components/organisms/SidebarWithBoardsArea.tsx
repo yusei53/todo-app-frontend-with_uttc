@@ -8,23 +8,22 @@ import axios from "axios";
 import { useState } from "react";
 import CreateBoardModal from "../molecules/CreateBoardModal";
 import BoardCard from "../molecules/BoardCard";
+import { fetchBoards } from "@/app/hooks/boards/queryFn";
 
 // async function fetcher(key: string) {
 //   return fetch(key).then((res) => res.json() as Promise<BoardProps[] | null>);
 // }
 
 const SideBarWithBoardsArea = () => {
-  // const { data, error } = useSWR("http://localhost:8083/boards", fetcher);
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const [newBoardName, setNewBoardName] = useState("");
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const queryClient = useQueryClient();
+
+  // const { data, error } = useSWR("http://localhost:8083/boards", fetcher);
 
   const { isLoading, data } = useQuery({
     queryKey: ["boards"],
-    queryFn: async () => {
-      const { data } = await axios.get("http://localhost:8083/boards");
-      return data;
-    },
+    queryFn: fetchBoards,
   });
 
   const mutation = useMutation({

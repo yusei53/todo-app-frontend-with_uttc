@@ -4,12 +4,12 @@ import { AddIcon } from "@chakra-ui/icons";
 import Loading from "../../loading";
 import { BoardProps } from "../../types/type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import { useState } from "react";
 import CreateBoardModal from "../molecules/CreateBoardModal";
 import BoardCard from "../molecules/BoardCard";
-import { fetchBoards } from "@/app/hooks/boards/queryFn";
+import { createBoard, fetchBoards } from "@/app/api/boards/queryFn";
 
+// swrを使った場合
 // async function fetcher(key: string) {
 //   return fetch(key).then((res) => res.json() as Promise<BoardProps[] | null>);
 // }
@@ -19,17 +19,13 @@ const SideBarWithBoardsArea = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const queryClient = useQueryClient();
 
-  // const { data, error } = useSWR("http://localhost:8083/boards", fetcher);
-
   const { isLoading, data } = useQuery({
     queryKey: ["boards"],
     queryFn: fetchBoards,
   });
 
   const mutation = useMutation({
-    mutationFn: (newBoard: { board_title: string }) => {
-      return axios.post("http://localhost:8083/boards", newBoard);
-    },
+    mutationFn: createBoard,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["boards"] });
       onClose();
@@ -39,6 +35,9 @@ const SideBarWithBoardsArea = () => {
   const handleSave = () => {
     mutation.mutate({ board_title: newBoardName });
   };
+
+  // swrを使った場合(GET)
+  // const { data, error } = useSWR("http://localhost:8083/boards", fetcher);
 
   if (isLoading) return <Loading />;
   return (

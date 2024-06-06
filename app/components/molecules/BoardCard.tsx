@@ -1,6 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
-import { BoardProps } from "../types/type";
+import { BoardProps } from "../../types/type";
 import Link from "next/link";
 
 type BoardTitle = Omit<BoardProps, "deleted">;

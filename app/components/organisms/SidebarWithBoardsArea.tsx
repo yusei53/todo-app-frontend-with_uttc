@@ -7,7 +7,11 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import CreateBoardModal from "../molecules/CreateBoardModal";
 import BoardCard from "../molecules/BoardCard";
-import { createBoard, fetchBoards } from "@/app/api/boards/queryFn";
+import {
+  createBoard,
+  deleteBoard,
+  fetchBoards,
+} from "@/app/api/boards/queryFn";
 
 // swrを使った場合
 // async function fetcher(key: string) {
@@ -24,7 +28,7 @@ const SideBarWithBoardsArea = () => {
     queryFn: fetchBoards,
   });
 
-  const mutation = useMutation({
+  const createMutation = useMutation({
     mutationFn: createBoard,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["boards"] });
@@ -32,8 +36,19 @@ const SideBarWithBoardsArea = () => {
     },
   });
 
+  const deleteMutation = useMutation({
+    mutationFn: deleteBoard,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["boards"] });
+    },
+  });
+
   const handleSave = () => {
-    mutation.mutate({ board_title: newBoardName });
+    createMutation.mutate(newBoardName);
+  };
+
+  const handleDelete = (board_id: number) => {
+    deleteMutation.mutate(board_id);
   };
 
   // swrを使った場合(GET)
@@ -73,7 +88,12 @@ const SideBarWithBoardsArea = () => {
         onSave={handleSave}
       />
       {data.map((data: BoardProps) => (
-        <BoardCard key={data.id} props={data} />
+        <BoardCard
+          key={data.id}
+          id={data.id}
+          title={data.title}
+          handleDelete={() => handleDelete(data.id)}
+        />
       ))}
     </Box>
   );

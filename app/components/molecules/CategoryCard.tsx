@@ -3,7 +3,6 @@ import {
   Button,
   ButtonGroup,
   IconButton,
-  Input,
   Text,
   Textarea,
 } from "@chakra-ui/react";

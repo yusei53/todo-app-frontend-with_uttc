@@ -6,10 +6,15 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { CategoryProps } from "../../types/type";
+import AddButton from "../atom/AddButton";
+import { useCallback, useState } from "react";
+import TextAreaButtonGroup from "../molecules/TextAreaButtonGroup";
 
 const CategoriesArea = () => {
   const searchParams = useSearchParams();
   const boardId = searchParams.get("id");
+
+  const [isOepn, setIsOpen] = useState(false);
 
   const { isLoading, data } = useQuery({
     queryKey: ["categories", boardId],
@@ -20,6 +25,10 @@ const CategoriesArea = () => {
       return data;
     },
   });
+
+  const handleOpen = useCallback(() => {
+    setIsOpen((value) => !value);
+  }, []);
 
   if (isLoading) return <Loading />;
   if (!data) return <div>dataがありません</div>;
@@ -41,6 +50,30 @@ const CategoriesArea = () => {
             title={categoryData.title}
           />
         ))}
+        {isOepn ? (
+          <Box
+            minWidth={272}
+            bgColor={"#EBECF0"}
+            borderRadius={12}
+            mx={2}
+            p={2}
+          >
+            <TextAreaButtonGroup
+              title={"リストを追加"}
+              placeholder={"リストのタイトルを入力"}
+              handleOpen={handleOpen}
+            />
+          </Box>
+        ) : (
+          <AddButton
+            title={"リストを追加"}
+            bgColor={"rgba(255, 255, 255, 0.5)"}
+            color={"white"}
+            minWidth={272}
+            sx={{ mx: 2, p: 4 }}
+            handleOpen={handleOpen}
+          />
+        )}
       </Box>
     </Box>
   );

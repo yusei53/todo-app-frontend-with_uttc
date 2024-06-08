@@ -9,6 +9,7 @@ import { CategoryProps } from "../../types/type";
 import AddButton from "../atom/AddButton";
 import { useCallback, useState } from "react";
 import TextAreaButtonGroup from "../molecules/TextAreaButtonGroup";
+import CategoryCardContainer from "../atom/CategoryCardContainer";
 
 const CategoriesArea = () => {
   const searchParams = useSearchParams();
@@ -51,19 +52,13 @@ const CategoriesArea = () => {
           />
         ))}
         {isOepn ? (
-          <Box
-            minWidth={272}
-            bgColor={"#EBECF0"}
-            borderRadius={12}
-            mx={2}
-            p={2}
-          >
+          <CategoryCardContainer>
             <TextAreaButtonGroup
               title={"リストを追加"}
               placeholder={"リストのタイトルを入力"}
               handleOpen={handleOpen}
             />
-          </Box>
+          </CategoryCardContainer>
         ) : (
           <AddButton
             title={"リストを追加"}

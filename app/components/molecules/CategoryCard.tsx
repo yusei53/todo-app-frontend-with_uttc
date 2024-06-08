@@ -8,6 +8,7 @@ import Loading from "../../loading";
 import { useCallback, useState } from "react";
 import AddButton from "../atom/AddButton";
 import TextAreaButtonGroup from "./TextAreaButtonGroup";
+import CategoryCardContainer from "../atom/CategoryCardContainer";
 
 type categoryCardProps = Pick<CategoryProps, "id" | "title">;
 
@@ -31,7 +32,7 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
   if (isLoading) return <Loading />;
 
   return (
-    <Box minWidth={272} bgColor={"#EBECF0"} borderRadius={12} mx={2} p={2}>
+    <CategoryCardContainer>
       <Box
         display={"flex"}
         justifyContent={"space-between"}
@@ -60,7 +61,7 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
       ) : (
         <AddButton title={"カードを追加"} handleOpen={handleOpen} />
       )}
-    </Box>
+    </CategoryCardContainer>
   );
 };
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Box } from "@chakra-ui/react";
-import Header from "./components/common/Header";
+import Header from "./components/organisms/Header";
 import SideBarWithBoardsArea from "./components/organisms/SidebarWithBoardsArea";
 import { Providers } from "./provider";
 

@@ -1,6 +1,6 @@
+import React from "react";
 import { AddIcon } from "@chakra-ui/icons";
 import { Button, SystemStyleObject } from "@chakra-ui/react";
-import React from "react";
 
 type TProps = {
   title: string;

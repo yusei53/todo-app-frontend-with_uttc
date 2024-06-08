@@ -1,18 +1,13 @@
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  IconButton,
-  Text,
-  Textarea,
-} from "@chakra-ui/react";
-import { AddIcon, CloseIcon, DeleteIcon } from "@chakra-ui/icons";
+import { Box, Text } from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
 import { CategoryProps } from "../../types/type";
 import ItemCard from "./ItemCard";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Loading from "../../loading";
 import { useCallback, useState } from "react";
+import AddButton from "../atom/AddButton";
+import TextAreaButtonGroup from "./TextAreaButtonGroup";
 
 type categoryCardProps = Pick<CategoryProps, "id" | "title">;
 
@@ -57,52 +52,13 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
         ))}
       </Box>
       {isOepn ? (
-        <>
-          <Textarea
-            placeholder={"タイトルを入力"}
-            rows={2}
-            size={"sm"}
-            borderRadius={5}
-            bg={"white"}
-            boxShadow={"0 0 2px gray"}
-            mb={2}
-          />
-          <ButtonGroup size="xs" display={"flex"} alignItems={"center"}>
-            <Button
-              fontSize={"small"}
-              bgColor={"#496AAF"}
-              color={"white"}
-              size={"sm"}
-              _hover={{ bg: "#D9DBDF" }}
-            >
-              カードを追加
-            </Button>
-            <IconButton
-              aria-label={"delete button"}
-              boxSize={2.5}
-              _hover={{ transform: "scale(1.3)" }}
-              icon={<CloseIcon />}
-              onClick={handleOpen}
-            />
-          </ButtonGroup>
-        </>
+        <TextAreaButtonGroup
+          title={"カードを追加"}
+          placeholder={"カードのタイトルを入力"}
+          handleOpen={handleOpen}
+        />
       ) : (
-        <Button
-          width={"100%"}
-          fontSize={"small"}
-          bgColor={"transparent"}
-          size={"sm"}
-          px={1.5}
-          display={"flex"}
-          justifyContent={"flex-start"}
-          leftIcon={
-            <AddIcon boxSize={2.5} _hover={{ transform: "scale(1.3)" }} />
-          }
-          _hover={{ bg: "#D9DBDF" }}
-          onClick={handleOpen}
-        >
-          カードを追加
-        </Button>
+        <AddButton title={"カードを追加"} handleOpen={handleOpen} />
       )}
     </Box>
   );

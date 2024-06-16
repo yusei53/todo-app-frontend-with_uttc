@@ -2,7 +2,6 @@
 import Loading from "../../loading";
 import { Box } from "@chakra-ui/react";
 import CategoryCard from "../molecules/CategoryCard";
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { CategoryProps } from "../../types/type";
@@ -10,6 +9,7 @@ import AddButton from "../atom/AddButton";
 import { useCallback, useState } from "react";
 import TextAreaButtonGroup from "../molecules/TextAreaButtonGroup";
 import CategoryCardContainer from "../atom/CategoryCardContainer";
+import { fetchCategories } from "@/app/api/categories/queryFn";
 
 const CategoriesArea = () => {
   const searchParams = useSearchParams();
@@ -19,12 +19,7 @@ const CategoriesArea = () => {
 
   const { isLoading, data } = useQuery({
     queryKey: ["categories", boardId],
-    queryFn: async () => {
-      const { data } = await axios.get(
-        `http://localhost:8083/categories?board_id=${boardId}`
-      );
-      return data;
-    },
+    queryFn: () => fetchCategories(boardId),
   });
 
   const handleOpen = useCallback(() => {

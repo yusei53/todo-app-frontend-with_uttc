@@ -17,7 +17,7 @@ const CategoriesArea = () => {
   const [newCategoryTitle, setNewCategoryTitle] = useState("");
   const queryClient = useQueryClient();
 
-  const [isOepn, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const { isLoading, data } = useQuery({
     queryKey: ["categories", boardId],
@@ -66,7 +66,7 @@ const CategoriesArea = () => {
             title={categoryData.title}
           />
         ))}
-        {isOepn ? (
+        {isOpen ? (
           <CategoryCardContainer>
             <TextAreaButtonGroup
               title={"リストを追加"}

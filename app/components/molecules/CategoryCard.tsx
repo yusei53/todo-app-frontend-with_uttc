@@ -7,8 +7,8 @@ import axios from "axios";
 import Loading from "../../loading";
 import { useCallback, useState } from "react";
 import AddButton from "../atom/AddButton";
-import TextAreaButtonGroup from "./TextAreaButtonGroup";
 import CategoryCardContainer from "../atom/CategoryCardContainer";
+import TextAreaButtonGroup from "../atom/TextAreaButtonGroup";
 
 type categoryCardProps = Pick<CategoryProps, "id" | "title">;
 
@@ -56,7 +56,9 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
         <TextAreaButtonGroup
           title={"カードを追加"}
           placeholder={"カードのタイトルを入力"}
-          handleOpen={handleOpen}
+          onChange={(e) => console.log(e)}
+          onSave={() => console.log("save")}
+          onClose={handleOpen}
         />
       ) : (
         <AddButton title={"カードを追加"} handleOpen={handleOpen} />

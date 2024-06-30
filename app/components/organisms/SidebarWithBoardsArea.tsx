@@ -1,60 +1,30 @@
-"use client";
-import { Box, Heading, useDisclosure } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
-import Loading from "../../loading";
 import { BoardProps } from "../../types/type";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
 import CreateBoardModal from "../molecules/CreateBoardModal";
 import BoardCard from "../molecules/BoardCard";
-import {
-  createBoard,
-  deleteBoard,
-  fetchBoards,
-} from "@/app/api/boards/queryFn";
 
-// swrを使った場合
-// async function fetcher(key: string) {
-//   return fetch(key).then((res) => res.json() as Promise<BoardProps[] | null>);
-// }
+type TProps = {
+  title: string;
+  setNewBoardName: (value: string) => void;
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  data: BoardProps[];
+  handleSave: () => void;
+  handleDelete: (board_id: number) => void;
+};
 
-const SideBarWithBoardsArea = () => {
-  const [newBoardName, setNewBoardName] = useState("");
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const queryClient = useQueryClient();
-
-  const { isLoading, data } = useQuery({
-    queryKey: ["boards"],
-    queryFn: fetchBoards,
-  });
-
-  const createMutation = useMutation({
-    mutationFn: createBoard,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["boards"] });
-      onClose();
-    },
-  });
-
-  const deleteMutation = useMutation({
-    mutationFn: deleteBoard,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["boards"] });
-    },
-  });
-
-  const handleSave = () => {
-    createMutation.mutate(newBoardName);
-  };
-
-  const handleDelete = (board_id: number) => {
-    deleteMutation.mutate(board_id);
-  };
-
-  // swrを使った場合(GET)
-  // const { data, error } = useSWR("http://localhost:8083/boards", fetcher);
-
-  if (isLoading) return <Loading />;
+const SideBarWithBoardsArea: React.FC<TProps> = ({
+  title,
+  setNewBoardName,
+  isOpen,
+  onOpen,
+  onClose,
+  data,
+  handleSave,
+  handleDelete,
+}) => {
   return (
     <Box
       height={"92vh"}
@@ -71,7 +41,7 @@ const SideBarWithBoardsArea = () => {
         mb={5}
       >
         <Heading fontSize={17} color={"white"}>
-          ボード一覧
+          {title}
         </Heading>
         <AddIcon
           boxSize={3}

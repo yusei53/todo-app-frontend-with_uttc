@@ -79,7 +79,7 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
           onClose={handleOpen}
         />
       ) : (
-        <AddButton title={"カードを追加"} handleOpen={handleOpen} />
+        <AddButton title={"カードを追加"} onClose={handleOpen} />
       )}
     </CategoryCardContainer>
   );

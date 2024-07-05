@@ -1,9 +1,9 @@
 import { Box } from "@chakra-ui/react";
 import CategoryCard from "../molecules/CategoryCard";
 import { CategoryProps } from "../../types/type";
-import AddButton from "../atom/AddButton";
 import TextAreaButtonGroup from "../molecules/TextAreaButtonGroup";
 import CategoryCardContainer from "../atom/CategoryCardContainer";
+import AddButtonBar from "../atom/AddButtonBar";
 
 type TProps = {
   categoryData: CategoryProps[];
@@ -48,7 +48,7 @@ const CategoriesArea: React.FC<TProps> = ({
             />
           </CategoryCardContainer>
         ) : (
-          <AddButton
+          <AddButtonBar
             title={"リストを追加"}
             bgColor={"rgba(255, 255, 255, 0.5)"}
             color={"white"}

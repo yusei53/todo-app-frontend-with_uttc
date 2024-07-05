@@ -5,10 +5,11 @@ import ItemCard from "./ItemCard";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Loading from "../../loading";
 import { useCallback, useState } from "react";
-import AddButton from "../atom/AddButton";
+
 import CategoryCardContainer from "../atom/CategoryCardContainer";
 import TextAreaButtonGroup from "./TextAreaButtonGroup";
 import { fetchItems } from "@/app/api/items/queryFn";
+import AddButtonBar from "../atom/AddButtonBar";
 
 type categoryCardProps = Pick<CategoryProps, "id" | "title">;
 
@@ -85,7 +86,7 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
           onClose={handleOpen}
         />
       ) : (
-        <AddButton title={"カードを追加"} onClose={handleOpen} />
+        <AddButtonBar title={"カードを追加"} onClose={handleOpen} />
       )}
     </CategoryCardContainer>
   );

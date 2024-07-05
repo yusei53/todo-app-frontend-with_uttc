@@ -12,6 +12,7 @@ import {
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+// 日本語ロケールを登録
 type TProps = {
   placeholder: string;
   title: string;
@@ -84,6 +85,7 @@ const TextAreaButtonGroup: React.FC<TProps> = React.memo(
         />
         {isItem && minDate && setDate && (
           <DatePicker
+            locale="ja"
             dateFormat="yyyy/MM/dd"
             selected={date}
             minDate={minDate}

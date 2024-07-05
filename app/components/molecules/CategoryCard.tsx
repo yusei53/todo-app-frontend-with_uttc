@@ -5,16 +5,18 @@ import ItemCard from "./ItemCard";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Loading from "../../loading";
 import { useCallback, useState } from "react";
-import AddButton from "../atom/AddButton";
 import CategoryCardContainer from "../atom/CategoryCardContainer";
-import TextAreaButtonGroup from "../atom/TextAreaButtonGroup";
 import { fetchItems } from "@/app/api/items/queryFn";
+import AddItemButtonBar from "../atom/AddItemButtonBar";
+import OpenAddItemArea from "./OpenAddItemArea";
 
 type categoryCardProps = Pick<CategoryProps, "id" | "title">;
 
 const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
   const queryClient = useQueryClient();
   const [isOepn, setIsOpen] = useState(false);
+  const Today = new Date();
+  const [startDate, setStartDate] = useState(Today);
 
   const handleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -71,15 +73,19 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
         ))}
       </Box>
       {isOepn ? (
-        <TextAreaButtonGroup
+        <OpenAddItemArea
           title={"カードを追加"}
           placeholder={"カードのタイトルを入力"}
+          isItem
+          date={startDate}
+          minDate={Today}
+          setDate={setStartDate}
           onChange={(e) => console.log(e)}
           onSave={() => console.log("save")}
           onClose={handleOpen}
         />
       ) : (
-        <AddButton title={"カードを追加"} onClose={handleOpen} />
+        <AddItemButtonBar title={"カードを追加"} onClose={handleOpen} />
       )}
     </CategoryCardContainer>
   );

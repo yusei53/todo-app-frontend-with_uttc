@@ -1,9 +1,9 @@
 import { Box } from "@chakra-ui/react";
 import CategoryCard from "../molecules/CategoryCard";
 import { CategoryProps } from "../../types/type";
-import AddButton from "../atom/AddButton";
-import TextAreaButtonGroup from "../atom/TextAreaButtonGroup";
 import CategoryCardContainer from "../atom/CategoryCardContainer";
+import AddItemButtonBar from "../atom/AddItemButtonBar";
+import OpenAddItemArea from "../molecules/OpenAddItemArea";
 
 type TProps = {
   categoryData: CategoryProps[];
@@ -39,7 +39,7 @@ const CategoriesArea: React.FC<TProps> = ({
         ))}
         {isOpen ? (
           <CategoryCardContainer>
-            <TextAreaButtonGroup
+            <OpenAddItemArea
               title={"リストを追加"}
               placeholder={"リストのタイトルを入力"}
               onChange={onChange}
@@ -48,7 +48,7 @@ const CategoriesArea: React.FC<TProps> = ({
             />
           </CategoryCardContainer>
         ) : (
-          <AddButton
+          <AddItemButtonBar
             title={"リストを追加"}
             bgColor={"rgba(255, 255, 255, 0.5)"}
             color={"white"}

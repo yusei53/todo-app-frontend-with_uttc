@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 import CategoryCard from "../molecules/CategoryCard";
 import { CategoryProps } from "../../types/type";
 import AddButton from "../atom/AddButton";
-import TextAreaButtonGroup from "../atom/TextAreaButtonGroup";
+import TextAreaButtonGroup from "../molecules/TextAreaButtonGroup";
 import CategoryCardContainer from "../atom/CategoryCardContainer";
 
 type TProps = {

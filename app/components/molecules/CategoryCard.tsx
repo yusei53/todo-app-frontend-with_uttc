@@ -7,7 +7,7 @@ import Loading from "../../loading";
 import { useCallback, useState } from "react";
 import AddButton from "../atom/AddButton";
 import CategoryCardContainer from "../atom/CategoryCardContainer";
-import TextAreaButtonGroup from "../atom/TextAreaButtonGroup";
+import TextAreaButtonGroup from "./TextAreaButtonGroup";
 import { fetchItems } from "@/app/api/items/queryFn";
 
 type categoryCardProps = Pick<CategoryProps, "id" | "title">;

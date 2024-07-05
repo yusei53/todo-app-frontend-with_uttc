@@ -1,18 +1,10 @@
-import React, { forwardRef } from "react";
-import { CalendarIcon, CloseIcon } from "@chakra-ui/icons";
-import {
-  Textarea,
-  ButtonGroup,
-  Button,
-  IconButton,
-  Input,
-  InputRightElement,
-  InputGroup,
-} from "@chakra-ui/react";
+import React from "react";
+import { CloseIcon } from "@chakra-ui/icons";
+import { Textarea, ButtonGroup, Button, IconButton } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import CustomInputDatePicker from "../atom/CustomInputDatePicker";
 
-// 日本語ロケールを登録
 type TProps = {
   placeholder: string;
   title: string;
@@ -23,11 +15,6 @@ type TProps = {
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onSave: () => void;
   onClose: () => void;
-};
-
-type CustomInputProps = {
-  value?: string;
-  onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 };
 
 const TextAreaButtonGroup: React.FC<TProps> = React.memo(
@@ -42,36 +29,6 @@ const TextAreaButtonGroup: React.FC<TProps> = React.memo(
     onSave,
     onClose,
   }) => {
-    const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
-      ({ value, onClick }, ref) => (
-        <InputGroup
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          boxShadow={"0 0 2px gray"}
-          borderRadius={5}
-          size={"sm"}
-          bg={"white"}
-          cursor={"pointer"}
-          mt={2}
-          onClick={onClick}
-        >
-          <Input
-            borderRadius={5}
-            cursor={"pointer"}
-            value={value}
-            ref={ref}
-            readOnly
-          />
-          <InputRightElement height="100%">
-            <CalendarIcon boxSize={3.5} aria-label={"calendar button"} />
-          </InputRightElement>
-        </InputGroup>
-      )
-    );
-
-    CustomInput.displayName = "CustomInput";
-
     return (
       <>
         <Textarea
@@ -90,7 +47,9 @@ const TextAreaButtonGroup: React.FC<TProps> = React.memo(
             selected={date}
             minDate={minDate}
             onChange={(date) => setDate(date as Date)}
-            customInput={<CustomInput value={date?.toLocaleDateString()} />}
+            customInput={
+              <CustomInputDatePicker value={date?.toLocaleDateString()} />
+            }
           />
         )}
         <ButtonGroup size={"xs"} display={"flex"} alignItems={"center"} mt={2}>

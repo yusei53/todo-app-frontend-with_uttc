@@ -1,9 +1,9 @@
 import React from "react";
-import { CloseIcon } from "@chakra-ui/icons";
-import { Textarea, ButtonGroup, Button, IconButton } from "@chakra-ui/react";
+import { Textarea } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import CustomInputDatePicker from "../atom/CustomInputDatePicker";
+import OpenAddItemButtonGroup from "../atom/OpenAddItemButtonGroup";
 
 type TProps = {
   placeholder: string;
@@ -32,12 +32,12 @@ const OpenAddItemArea: React.FC<TProps> = React.memo(
     return (
       <>
         <Textarea
-          placeholder={placeholder}
           bg={"white"}
           size={"sm"}
           boxShadow={"0 0 2px gray"}
           rows={2}
           borderRadius={5}
+          placeholder={placeholder}
           onChange={(e) => onChange(e)}
         />
         {isItem && minDate && setDate && (
@@ -52,26 +52,11 @@ const OpenAddItemArea: React.FC<TProps> = React.memo(
             }
           />
         )}
-        <ButtonGroup size={"xs"} display={"flex"} alignItems={"center"} mt={2}>
-          <Button
-            size={"sm"}
-            fontSize={"xs"}
-            color={"white"}
-            bgColor={"#496AAF"}
-            _hover={{ bg: "#373D60" }}
-            onClick={onSave}
-          >
-            {title}
-          </Button>
-          <IconButton
-            boxSize={2}
-            variant={"ghost"}
-            aria-label={"delete button"}
-            _hover={{ transform: "scale(1.2)" }}
-            icon={<CloseIcon />}
-            onClick={onClose}
-          />
-        </ButtonGroup>
+        <OpenAddItemButtonGroup
+          title={title}
+          onSave={onSave}
+          onClose={onClose}
+        />
       </>
     );
   }

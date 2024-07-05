@@ -11,7 +11,7 @@ type TProps = {
   onClose: () => void;
 };
 
-const AddButtonBar: React.FC<TProps> = React.memo(
+const AddItemButtonBar: React.FC<TProps> = React.memo(
   ({ title, bgColor = "transparent", color, minWidth, sx, onClose }) => {
     return (
       <Button
@@ -37,6 +37,6 @@ const AddButtonBar: React.FC<TProps> = React.memo(
   }
 );
 
-AddButtonBar.displayName = "AddButtonBar";
+AddItemButtonBar.displayName = "AddItemButtonBar";
 
-export default AddButtonBar;
+export default AddItemButtonBar;

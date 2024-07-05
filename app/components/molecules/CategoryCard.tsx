@@ -7,8 +7,8 @@ import Loading from "../../loading";
 import { useCallback, useState } from "react";
 import CategoryCardContainer from "../atom/CategoryCardContainer";
 import { fetchItems } from "@/app/api/items/queryFn";
-import AddButtonBar from "../atom/AddButtonBar";
 import OpenAddItemGroup from "./OpenAddItemGroup";
+import AddItemButtonBar from "../atom/AddItemButtonBar";
 
 type categoryCardProps = Pick<CategoryProps, "id" | "title">;
 
@@ -85,7 +85,7 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
           onClose={handleOpen}
         />
       ) : (
-        <AddButtonBar title={"カードを追加"} onClose={handleOpen} />
+        <AddItemButtonBar title={"カードを追加"} onClose={handleOpen} />
       )}
     </CategoryCardContainer>
   );

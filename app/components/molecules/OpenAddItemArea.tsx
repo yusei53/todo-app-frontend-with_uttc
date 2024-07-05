@@ -17,7 +17,7 @@ type TProps = {
   onClose: () => void;
 };
 
-const OpenAddItemGroup: React.FC<TProps> = React.memo(
+const OpenAddItemArea: React.FC<TProps> = React.memo(
   ({
     placeholder,
     title,
@@ -77,6 +77,6 @@ const OpenAddItemGroup: React.FC<TProps> = React.memo(
   }
 );
 
-OpenAddItemGroup.displayName = "OpenAddItemGroup";
+OpenAddItemArea.displayName = "OpenAddItemArea";
 
-export default OpenAddItemGroup;
+export default OpenAddItemArea;

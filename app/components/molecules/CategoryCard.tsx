@@ -7,8 +7,8 @@ import Loading from "../../loading";
 import { useCallback, useState } from "react";
 import CategoryCardContainer from "../atom/CategoryCardContainer";
 import { fetchItems } from "@/app/api/items/queryFn";
-import OpenAddItemGroup from "./OpenAddItemGroup";
 import AddItemButtonBar from "../atom/AddItemButtonBar";
+import OpenAddItemArea from "./OpenAddItemArea";
 
 type categoryCardProps = Pick<CategoryProps, "id" | "title">;
 
@@ -73,7 +73,7 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
         ))}
       </Box>
       {isOepn ? (
-        <OpenAddItemGroup
+        <OpenAddItemArea
           title={"カードを追加"}
           placeholder={"カードのタイトルを入力"}
           isItem

@@ -5,11 +5,10 @@ import ItemCard from "./ItemCard";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Loading from "../../loading";
 import { useCallback, useState } from "react";
-
 import CategoryCardContainer from "../atom/CategoryCardContainer";
-import TextAreaButtonGroup from "./TextAreaButtonGroup";
 import { fetchItems } from "@/app/api/items/queryFn";
 import AddButtonBar from "../atom/AddButtonBar";
+import OpenAddItemGroup from "./OpenAddItemGroup";
 
 type categoryCardProps = Pick<CategoryProps, "id" | "title">;
 
@@ -74,7 +73,7 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
         ))}
       </Box>
       {isOepn ? (
-        <TextAreaButtonGroup
+        <OpenAddItemGroup
           title={"カードを追加"}
           placeholder={"カードのタイトルを入力"}
           isItem

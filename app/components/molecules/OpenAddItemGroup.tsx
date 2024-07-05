@@ -17,7 +17,7 @@ type TProps = {
   onClose: () => void;
 };
 
-const TextAreaButtonGroup: React.FC<TProps> = React.memo(
+const OpenAddItemGroup: React.FC<TProps> = React.memo(
   ({
     placeholder,
     title,
@@ -77,6 +77,6 @@ const TextAreaButtonGroup: React.FC<TProps> = React.memo(
   }
 );
 
-TextAreaButtonGroup.displayName = "TextAreaButtonGroup";
+OpenAddItemGroup.displayName = "OpenAddItemGroup";
 
-export default TextAreaButtonGroup;
+export default OpenAddItemGroup;

@@ -8,17 +8,17 @@ import OpenAddItemArea from "../molecules/OpenAddItemArea";
 type TProps = {
   categoryData: CategoryProps[];
   isOpen: boolean;
-  onClose: () => void;
-  onSave: () => void;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  handleToggle: () => void;
+  handleSave: () => void;
+  handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 const CategoriesArea: React.FC<TProps> = ({
   categoryData,
   isOpen,
-  onChange,
-  onSave,
-  onClose,
+  handleToggle,
+  handleSave,
+  handleChange,
 }) => {
   return (
     <Box overflowX={"auto"} overflowY={"hidden"}>
@@ -42,9 +42,9 @@ const CategoriesArea: React.FC<TProps> = ({
             <OpenAddItemArea
               title={"リストを追加"}
               placeholder={"リストのタイトルを入力"}
-              onChange={onChange}
-              onSave={onSave}
-              onClose={onClose}
+              onChange={handleChange}
+              onSave={handleSave}
+              onClose={handleToggle}
             />
           </CategoryCardContainer>
         ) : (
@@ -54,7 +54,7 @@ const CategoriesArea: React.FC<TProps> = ({
             color={"white"}
             minWidth={272}
             sx={{ mx: 2, p: 4 }}
-            onOpen={onClose}
+            onOpen={handleToggle}
           />
         )}
       </Box>

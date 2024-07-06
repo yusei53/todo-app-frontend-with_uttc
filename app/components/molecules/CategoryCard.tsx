@@ -18,7 +18,7 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
   const Today = new Date();
   const [startDate, setStartDate] = useState(Today);
 
-  const handleOpen = useCallback(() => {
+  const handleToggle = useCallback(() => {
     setIsOpen((value) => !value);
   }, []);
 
@@ -82,10 +82,10 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
           setDate={setStartDate}
           onChange={(e) => console.log(e)}
           onSave={() => console.log("save")}
-          onClose={handleOpen}
+          onClose={handleToggle}
         />
       ) : (
-        <AddItemButtonBar title={"カードを追加"} onOpen={handleOpen} />
+        <AddItemButtonBar title={"カードを追加"} onOpen={handleToggle} />
       )}
     </CategoryCardContainer>
   );

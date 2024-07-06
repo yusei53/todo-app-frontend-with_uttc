@@ -19,7 +19,7 @@ const BoardDetailsTemplate = () => {
     queryFn: () => fetchCategories(boardId),
   });
 
-  const handleClose = useCallback(() => {
+  const handleToggle = useCallback(() => {
     setIsOpen((value) => !value);
   }, []);
 
@@ -48,9 +48,9 @@ const BoardDetailsTemplate = () => {
     <CategoriesArea
       categoryData={data}
       isOpen={isOpen}
-      onChange={(e) => setNewCategoryTitle(e.target.value)}
-      onSave={handleSave}
-      onClose={handleClose}
+      handleChange={(e) => setNewCategoryTitle(e.target.value)}
+      handleSave={handleSave}
+      handleToggle={handleToggle}
     />
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Textarea } from "@chakra-ui/react";
+import { Box, Textarea } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import CustomInputDatePicker from "../atom/CustomInputDatePicker";
@@ -41,16 +41,19 @@ const OpenAddItemArea: React.FC<TProps> = React.memo(
           onChange={(e) => onChange(e)}
         />
         {isItem && minDate && setDate && (
-          <DatePicker
-            locale="ja"
-            dateFormat="yyyy/MM/dd"
-            selected={date}
-            minDate={minDate}
-            onChange={(date) => setDate(date as Date)}
-            customInput={
-              <CustomInputDatePicker value={date?.toLocaleDateString()} />
-            }
-          />
+          // Boxで囲むことで、DatePickerによる表示崩れを防いでいる
+          <Box>
+            <DatePicker
+              locale="ja"
+              dateFormat="yyyy/MM/dd"
+              selected={date}
+              minDate={minDate}
+              onChange={(date) => setDate(date as Date)}
+              customInput={
+                <CustomInputDatePicker value={date?.toLocaleDateString()} />
+              }
+            />
+          </Box>
         )}
         <OpenAddItemButtonGroup
           title={title}

@@ -8,11 +8,11 @@ type TProps = {
   color?: string;
   minWidth?: number;
   sx?: SystemStyleObject;
-  onClose: () => void;
+  onOpen: () => void;
 };
 
 const AddItemButtonBar: React.FC<TProps> = React.memo(
-  ({ title, bgColor = "transparent", color, minWidth, sx, onClose }) => {
+  ({ title, bgColor = "transparent", color, minWidth, sx, onOpen }) => {
     return (
       <Button
         width={"100%"}
@@ -29,7 +29,7 @@ const AddItemButtonBar: React.FC<TProps> = React.memo(
         sx={sx}
         leftIcon={<AddIcon boxSize={2.5} />}
         _hover={{ bg: "#D9DBDF" }}
-        onClick={onClose}
+        onClick={onOpen}
       >
         {title}
       </Button>

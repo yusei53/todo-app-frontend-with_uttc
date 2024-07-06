@@ -54,7 +54,7 @@ const CategoriesArea: React.FC<TProps> = ({
             color={"white"}
             minWidth={272}
             sx={{ mx: 2, p: 4 }}
-            onClose={onClose}
+            onOpen={onClose}
           />
         )}
       </Box>

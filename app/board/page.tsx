@@ -1,4 +1,4 @@
-import BoardDetailsTemplate from "../components/templates/BoardDetailsTemplate";
+import BoardDetailsTemplate from "../components/boards/BoardDetailsTemplate";
 
 const BoardPage = () => {
   return <BoardDetailsTemplate />;

@@ -2,7 +2,7 @@ import { Box, Heading } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import { BoardProps } from "../../types/type";
 import CreateBoardModal from "../molecules/CreateBoardModal";
-import BoardCard from "../molecules/BoardCard";
+import BoardCard from "./BoardCard";
 
 type TProps = {
   title: string;

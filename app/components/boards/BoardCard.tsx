@@ -1,7 +1,7 @@
 import { Box, Text, useDisclosure } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import Link from "next/link";
-import ArchiveModal from "./ArchiveModal";
+import ArchiveModal from "../common/ArchiveModal";
 
 type TProps = {
   id: number;

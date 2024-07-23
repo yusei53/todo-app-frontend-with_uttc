@@ -18,7 +18,6 @@ const CustomInputDatePicker = forwardRef<HTMLInputElement, CustomInputProps>(
       size={"sm"}
       bg={"white"}
       cursor={"pointer"}
-      mt={2}
       onClick={onClick}
     >
       <Input

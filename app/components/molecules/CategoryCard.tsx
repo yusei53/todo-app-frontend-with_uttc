@@ -14,7 +14,7 @@ type categoryCardProps = Pick<CategoryProps, "id" | "title">;
 
 const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
   const queryClient = useQueryClient();
-  const [isOepn, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const Today = new Date();
   const [startDate, setStartDate] = useState(Today);
 
@@ -72,7 +72,7 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
           <ItemCard key={itemData.id} title={itemData.title} />
         ))}
       </Box>
-      {isOepn ? (
+      {isOpen ? (
         <OpenAddItemArea
           title={"カードを追加"}
           placeholder={"カードのタイトルを入力"}

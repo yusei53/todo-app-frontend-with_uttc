@@ -1,9 +1,9 @@
 import { Box } from "@chakra-ui/react";
-import CategoryCard from "../molecules/CategoryCard";
+import CategoryCard from "./CategoryCard";
 import { CategoryProps } from "../../types/type";
-import CategoryCardContainer from "../atom/CategoryCardContainer";
-import AddItemButtonBar from "../atom/AddItemButtonBar";
-import OpenAddItemArea from "../molecules/OpenAddItemArea";
+import CategoryCardContainer from "./CategoryCardContainer";
+import AddItemButtonBar from "../items/AddItemButtonBar";
+import OpenAddItemArea from "../items/OpenAddItemArea";
 
 type TProps = {
   categoryData: CategoryProps[];

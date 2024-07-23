@@ -2,8 +2,8 @@ import React from "react";
 import { Box, Textarea } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import CustomInputDatePicker from "../atom/CustomInputDatePicker";
-import OpenAddItemButtonGroup from "../atom/OpenAddItemButtonGroup";
+import CustomInputDatePicker from "./CustomInputDatePicker";
+import OpenAddItemButtonGroup from "./OpenAddItemButtonGroup";
 
 type TProps = {
   placeholder: string;

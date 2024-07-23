@@ -15,7 +15,7 @@ export const createCategory = async (
     `http://localhost:8083/categories?board_id=${boardId}`,
     {
       board_id: boardId,
-      title: categoryTitle,
+      category_title: categoryTitle,
     }
   );
   return data;

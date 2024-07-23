@@ -8,7 +8,7 @@ import {
   deleteBoard,
   fetchBoards,
 } from "@/app/api/boards/queryFn";
-import SideBarWithBoardsArea from "../organisms/SidebarWithBoardsArea";
+import SideBarWithBoardsArea from "./SidebarWithBoardsArea";
 
 // swrを使った場合
 // async function fetcher(key: string) {

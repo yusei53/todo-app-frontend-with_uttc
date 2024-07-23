@@ -1,20 +1,20 @@
 import { Box, Text } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { CategoryProps } from "../../types/type";
-import ItemCard from "./ItemCard";
+import ItemCard from "../items/ItemCard";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Loading from "../../loading";
 import { useCallback, useState } from "react";
-import CategoryCardContainer from "../atom/CategoryCardContainer";
+import CategoryCardContainer from "./CategoryCardContainer";
 import { fetchItems } from "@/app/api/items/queryFn";
-import AddItemButtonBar from "../atom/AddItemButtonBar";
-import OpenAddItemArea from "./OpenAddItemArea";
+import AddItemButtonBar from "../items/AddItemButtonBar";
+import OpenAddItemArea from "../items/OpenAddItemArea";
 
 type categoryCardProps = Pick<CategoryProps, "id" | "title">;
 
 const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
   const queryClient = useQueryClient();
-  const [isOepn, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const Today = new Date();
   const [startDate, setStartDate] = useState(Today);
 
@@ -72,7 +72,7 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
           <ItemCard key={itemData.id} title={itemData.title} />
         ))}
       </Box>
-      {isOepn ? (
+      {isOpen ? (
         <OpenAddItemArea
           title={"カードを追加"}
           placeholder={"カードのタイトルを入力"}

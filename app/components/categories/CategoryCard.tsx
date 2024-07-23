@@ -1,14 +1,14 @@
 import { Box, Text } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { CategoryProps } from "../../types/type";
-import ItemCard from "./ItemCard";
+import ItemCard from "../molecules/ItemCard";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Loading from "../../loading";
 import { useCallback, useState } from "react";
-import CategoryCardContainer from "../atom/CategoryCardContainer";
+import CategoryCardContainer from "./CategoryCardContainer";
 import { fetchItems } from "@/app/api/items/queryFn";
 import AddItemButtonBar from "../atom/AddItemButtonBar";
-import OpenAddItemArea from "./OpenAddItemArea";
+import OpenAddItemArea from "../molecules/OpenAddItemArea";
 
 type categoryCardProps = Pick<CategoryProps, "id" | "title">;
 

@@ -30,7 +30,8 @@ const OpenAddItemArea: React.FC<TProps> = React.memo(
     onClose,
   }) => {
     return (
-      <>
+      // Boxで囲むことで表示崩れを防ぐ
+      <Box>
         <Textarea
           bg={"white"}
           size={"sm"}
@@ -41,8 +42,7 @@ const OpenAddItemArea: React.FC<TProps> = React.memo(
           onChange={(e) => onChange(e)}
         />
         {isItem && minDate && setDate && (
-          // Boxで囲むことで表示崩れを防ぐ
-          <Box>
+          <>
             <Textarea
               my={2}
               bg={"white"}
@@ -53,26 +53,24 @@ const OpenAddItemArea: React.FC<TProps> = React.memo(
               placeholder={placeholder}
               onChange={(e) => onChange(e)}
             />
-            <Box>
-              <DatePicker
-                locale="ja"
-                dateFormat="yyyy/MM/dd"
-                selected={date}
-                minDate={minDate}
-                onChange={(date) => setDate(date as Date)}
-                customInput={
-                  <CustomInputDatePicker value={date?.toLocaleDateString()} />
-                }
-              />
-            </Box>
-          </Box>
+            <DatePicker
+              locale="ja"
+              dateFormat="yyyy/MM/dd"
+              selected={date}
+              minDate={minDate}
+              onChange={(date) => setDate(date as Date)}
+              customInput={
+                <CustomInputDatePicker value={date?.toLocaleDateString()} />
+              }
+            />
+          </>
         )}
         <OpenAddItemButtonGroup
           title={title}
           onSave={onSave}
           onClose={onClose}
         />
-      </>
+      </Box>
     );
   }
 );

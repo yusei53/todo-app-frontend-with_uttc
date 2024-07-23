@@ -76,6 +76,7 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
         <OpenAddItemArea
           title={"カードを追加"}
           placeholder={"カードのタイトルを入力"}
+          itemPlaceholder={"カードの詳細を入力"}
           isItem
           date={startDate}
           minDate={Today}

@@ -7,6 +7,7 @@ import OpenAddItemButtonGroup from "./OpenAddItemButtonGroup";
 
 type TProps = {
   placeholder: string;
+  itemPlaceholder?: string;
   title: string;
   isItem?: boolean;
   date?: Date;
@@ -20,6 +21,7 @@ type TProps = {
 const OpenAddItemArea: React.FC<TProps> = React.memo(
   ({
     placeholder,
+    itemPlaceholder,
     title,
     isItem,
     date,
@@ -30,8 +32,7 @@ const OpenAddItemArea: React.FC<TProps> = React.memo(
     onClose,
   }) => {
     return (
-      // Boxで囲むことで表示崩れを防ぐ
-      <Box>
+      <>
         <Textarea
           bg={"white"}
           size={"sm"}
@@ -41,8 +42,9 @@ const OpenAddItemArea: React.FC<TProps> = React.memo(
           placeholder={placeholder}
           onChange={(e) => onChange(e)}
         />
-        {isItem && minDate && setDate && (
-          <>
+        {isItem && setDate && (
+          // Boxで囲むことで表示崩れを防ぐ
+          <Box>
             <Textarea
               my={2}
               bg={"white"}
@@ -50,27 +52,29 @@ const OpenAddItemArea: React.FC<TProps> = React.memo(
               boxShadow={"0 0 2px gray"}
               rows={4}
               borderRadius={5}
-              placeholder={placeholder}
+              placeholder={itemPlaceholder}
               onChange={(e) => onChange(e)}
             />
-            <DatePicker
-              locale="ja"
-              dateFormat="yyyy/MM/dd"
-              selected={date}
-              minDate={minDate}
-              onChange={(date) => setDate(date as Date)}
-              customInput={
-                <CustomInputDatePicker value={date?.toLocaleDateString()} />
-              }
-            />
-          </>
+            <Box>
+              <DatePicker
+                locale="ja"
+                dateFormat="yyyy/MM/dd"
+                selected={date}
+                minDate={minDate}
+                onChange={(date) => setDate(date as Date)}
+                customInput={
+                  <CustomInputDatePicker value={date?.toLocaleDateString()} />
+                }
+              />
+            </Box>
+          </Box>
         )}
         <OpenAddItemButtonGroup
           title={title}
           onSave={onSave}
           onClose={onClose}
         />
-      </Box>
+      </>
     );
   }
 );

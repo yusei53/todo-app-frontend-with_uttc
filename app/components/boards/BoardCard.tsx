@@ -1,7 +1,7 @@
 import { Box, Text, useDisclosure } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import Link from "next/link";
-import ArchiveModal from "../common/ArchiveModal";
+import DeleteModal from "../common/DeleteModal";
 
 type TProps = {
   id: number;
@@ -41,7 +41,7 @@ const BoardCard: React.FC<TProps> = ({ id, title, handleDelete }) => {
           />
         </Box>
       </Link>
-      <ArchiveModal
+      <DeleteModal
         boardTitle={title}
         isOpen={isOpen}
         onClose={onClose}

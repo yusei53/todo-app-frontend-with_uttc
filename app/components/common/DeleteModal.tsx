@@ -16,7 +16,7 @@ type TProps = {
   onSave: () => void;
 };
 
-const ArchiveModal: React.FC<TProps> = ({
+const DeleteModal: React.FC<TProps> = ({
   boardTitle,
   isOpen,
   onClose,
@@ -40,4 +40,4 @@ const ArchiveModal: React.FC<TProps> = ({
   );
 };
 
-export default ArchiveModal;
+export default DeleteModal;

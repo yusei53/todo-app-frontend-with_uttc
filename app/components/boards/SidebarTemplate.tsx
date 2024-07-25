@@ -44,8 +44,8 @@ const SideBarTemplate = () => {
     createMutation.mutate(newBoardName);
   };
 
-  const handleDelete = (board_id: number) => {
-    deleteMutation.mutate(board_id);
+  const handleDelete = (boardId: number) => {
+    deleteMutation.mutate(boardId);
   };
 
   // swrを使った場合(GET)

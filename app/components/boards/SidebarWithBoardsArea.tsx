@@ -12,7 +12,7 @@ type TProps = {
   onClose: () => void;
   data: BoardProps[];
   handleSave: () => void;
-  handleDelete: (board_id: number) => void;
+  handleDelete: (boardId: number) => void;
 };
 
 const SideBarWithBoardsArea: React.FC<TProps> = ({

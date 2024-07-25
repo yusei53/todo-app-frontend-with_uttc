@@ -33,8 +33,8 @@ const CategoriesArea: React.FC<TProps> = ({
         {categoryData.map((category) => (
           <CategoryCard
             key={category.id}
-            id={category.id}
-            title={category.title}
+            categoryId={category.id}
+            categoryTitle={category.title}
           />
         ))}
         {isOpen ? (
@@ -42,7 +42,7 @@ const CategoriesArea: React.FC<TProps> = ({
             <OpenAddItemArea
               title={"リストを追加"}
               placeholder={"リストのタイトルを入力"}
-              onChange={handleChange}
+              onChangeTitle={handleChange}
               onSave={handleSave}
               onClose={handleToggle}
             />

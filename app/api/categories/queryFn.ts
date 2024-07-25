@@ -20,3 +20,10 @@ export const createCategory = async (
   );
   return data;
 };
+
+export const deleteCategory = async (boardId: number) => {
+  const { data } = await axios.delete(
+    `http://localhost:8083/categories?board_id=${boardId}`
+  );
+  return data;
+};

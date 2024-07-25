@@ -1,53 +1,73 @@
 import { Box, Text } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
-import { CategoryProps } from "../../types/type";
+import { ItemProps } from "../../types/type";
 import ItemCard from "../items/ItemCard";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Loading from "../../loading";
 import { useCallback, useState } from "react";
 import CategoryCardContainer from "./CategoryCardContainer";
-import { fetchItems } from "@/app/api/items/queryFn";
+import { createItems, fetchItems } from "@/app/api/items/queryFn";
 import AddItemButtonBar from "../items/AddItemButtonBar";
 import OpenAddItemArea from "../items/OpenAddItemArea";
 
-type categoryCardProps = Pick<CategoryProps, "id" | "title">;
+type ItemCardProps = Pick<ItemProps, "id" | "title">;
 
-const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
+type CategoryCardProps = {
+  categoryId: number;
+  categoryTitle: string;
+};
+
+const CategoryCard: React.FC<CategoryCardProps> = ({
+  categoryId,
+  categoryTitle,
+}) => {
   const queryClient = useQueryClient();
-  const [isOpen, setIsOpen] = useState(false);
+
+  const [itemTitle, setItemTitle] = useState<string>("");
+  const [itemContent, setItemContent] = useState<string>("");
   const Today = new Date();
-  const [startDate, setStartDate] = useState(Today);
+  const [itemExpiredAt, setItemExpiredAt] = useState<Date>(Today);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleToggle = useCallback(() => {
     setIsOpen((value) => !value);
   }, []);
 
   const { isLoading, data } = useQuery({
-    queryKey: ["items", id],
-    queryFn: () => fetchItems(id),
+    queryKey: ["items", categoryId],
+    queryFn: () => fetchItems(categoryId),
   });
 
-  // const createMutation = useMutation({
-  //   mutationFn: ({
-  //     categoryId,
-  //     itemTitle,
-  //     itemContent,
-  //     itemExpiredAt,
-  //   }: {
-  //     categoryId: number | null;
-  //     itemTitle: string;
-  //     itemContent: string;
-  //     itemExpiredAt: Date;
-  //   }) => createItems(categoryId, itemTitle, itemContent, itemExpiredAt),
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries({ queryKey: ["items", id] });
-  //     setIsOpen(false);
-  //   },
-  // });
+  const createMutation = useMutation({
+    mutationFn: ({
+      categoryId,
+      itemTitle,
+      itemContent,
+      itemExpiredAt,
+    }: {
+      categoryId: number;
+      itemTitle: string;
+      itemContent: string;
+      itemExpiredAt: string;
+    }) => createItems(categoryId, itemTitle, itemContent, itemExpiredAt),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["items", categoryId] });
+      setIsOpen(false);
+    },
+  });
 
-  // const handleSave = () => {
-  //   createMutation.mutate({ categoryId: id, categoryTitle: newCategoryTitle });
-  // };
+  const formatDate = (date: Date) => {
+    return date.toISOString().split("T")[0];
+  };
+
+  const handleSave = () => {
+    createMutation.mutate({
+      categoryId,
+      itemTitle,
+      itemContent,
+      itemExpiredAt: formatDate(itemExpiredAt),
+    });
+  };
 
   if (isLoading) return <Loading />;
 
@@ -59,7 +79,7 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
         alignItems={"center"}
       >
         <Text isTruncated whiteSpace={"pre-wrap"}>
-          {title}
+          {categoryTitle}
         </Text>
         <DeleteIcon
           boxSize={3.5}
@@ -68,21 +88,22 @@ const CategoryCard: React.FC<categoryCardProps> = ({ id, title }) => {
         />
       </Box>
       <Box my={3}>
-        {data.map((itemData: categoryCardProps) => (
-          <ItemCard key={itemData.id} title={itemData.title} />
+        {data.map((item: ItemCardProps) => (
+          <ItemCard key={item.id} title={item.title} />
         ))}
       </Box>
       {isOpen ? (
         <OpenAddItemArea
           title={"カードを追加"}
           placeholder={"カードのタイトルを入力"}
-          itemPlaceholder={"カードの詳細を入力"}
+          contentPlaceholder={"カードの詳細を入力"}
           isItem
-          date={startDate}
+          date={itemExpiredAt}
           minDate={Today}
-          setDate={setStartDate}
-          onChange={(e) => console.log(e)}
-          onSave={() => console.log("save")}
+          setDate={setItemExpiredAt}
+          onChangeTitle={(e) => setItemTitle(e.target.value)}
+          onChangeContent={(e) => setItemContent(e.target.value)}
+          onSave={handleSave}
           onClose={handleToggle}
         />
       ) : (

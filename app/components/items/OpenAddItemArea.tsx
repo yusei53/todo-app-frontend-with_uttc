@@ -7,13 +7,14 @@ import OpenAddItemButtonGroup from "./OpenAddItemButtonGroup";
 
 type TProps = {
   placeholder: string;
-  itemPlaceholder?: string;
+  contentPlaceholder?: string;
   title: string;
   isItem?: boolean;
   date?: Date;
   minDate?: Date;
   setDate?: (date: Date) => void;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onChangeTitle: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onChangeContent?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onSave: () => void;
   onClose: () => void;
 };
@@ -21,13 +22,14 @@ type TProps = {
 const OpenAddItemArea: React.FC<TProps> = React.memo(
   ({
     placeholder,
-    itemPlaceholder,
+    contentPlaceholder,
     title,
     isItem,
     date,
     minDate,
     setDate,
-    onChange,
+    onChangeTitle,
+    onChangeContent,
     onSave,
     onClose,
   }) => {
@@ -40,9 +42,9 @@ const OpenAddItemArea: React.FC<TProps> = React.memo(
           rows={2}
           borderRadius={5}
           placeholder={placeholder}
-          onChange={(e) => onChange(e)}
+          onChange={(e) => onChangeTitle(e)}
         />
-        {isItem && setDate && (
+        {isItem && setDate && onChangeContent && (
           // Boxで囲むことで表示崩れを防ぐ
           <Box>
             <Textarea
@@ -52,8 +54,8 @@ const OpenAddItemArea: React.FC<TProps> = React.memo(
               boxShadow={"0 0 2px gray"}
               rows={4}
               borderRadius={5}
-              placeholder={itemPlaceholder}
-              onChange={(e) => onChange(e)}
+              placeholder={contentPlaceholder}
+              onChange={(e) => onChangeContent(e)}
             />
             <Box>
               <DatePicker

@@ -10,28 +10,23 @@ import {
 } from "@chakra-ui/react";
 
 type TProps = {
-  boardTitle: string;
+  title: string;
   isOpen: boolean;
   onClose: () => void;
-  onSave: () => void;
+  onClick: () => void;
 };
 
-const DeleteModal: React.FC<TProps> = ({
-  boardTitle,
-  isOpen,
-  onClose,
-  onSave,
-}) => {
+const DeleteModal: React.FC<TProps> = ({ title, isOpen, onClose, onClick }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalContent>
-        <ModalHeader>{boardTitle}の削除</ModalHeader>
+        <ModalHeader>{title}の削除</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Text fontWeight="bold">本当に削除しますか？</Text>
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme="blue" onClick={onSave}>
+          <Button colorScheme="blue" onClick={onClick}>
             削除
           </Button>
         </ModalFooter>

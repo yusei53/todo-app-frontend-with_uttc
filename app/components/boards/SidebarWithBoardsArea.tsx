@@ -62,7 +62,7 @@ const SideBarWithBoardsArea: React.FC<TProps> = ({
           key={data.id}
           id={data.id}
           title={data.title}
-          handleDelete={() => handleDelete(data.id)}
+          onDelete={() => handleDelete(data.id)}
         />
       ))}
     </Box>

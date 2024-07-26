@@ -1,5 +1,9 @@
 "use client";
-import { fetchCategories, createCategory } from "@/app/api/categories/queryFn";
+import {
+  fetchCategories,
+  createCategory,
+  deleteCategory,
+} from "@/app/api/categories/queryFn";
 import Loading from "@/app/loading";
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
@@ -37,8 +41,19 @@ const BoardDetailsTemplate = () => {
     },
   });
 
+  const deleteMutation = useMutation({
+    mutationFn: deleteCategory,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["categories", boardId] });
+    },
+  });
+
   const handleSave = () => {
     createMutation.mutate({ boardId, categoryTitle: newCategoryTitle });
+  };
+
+  const handleDelete = (categoryId: number) => {
+    deleteMutation.mutate(categoryId);
   };
 
   if (isLoading) return <Loading />;
@@ -50,6 +65,7 @@ const BoardDetailsTemplate = () => {
       isOpen={isOpen}
       handleChange={(e) => setNewCategoryTitle(e.target.value)}
       handleSave={handleSave}
+      handleDelete={handleDelete}
       handleToggle={handleToggle}
     />
   );

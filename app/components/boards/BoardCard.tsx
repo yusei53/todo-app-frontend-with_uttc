@@ -6,14 +6,14 @@ import DeleteModal from "../common/DeleteModal";
 type TProps = {
   id: number;
   title: string;
-  handleDelete: () => void;
+  onDelete: () => void;
 };
 
-const BoardCard: React.FC<TProps> = ({ id, title, handleDelete }) => {
+const BoardCard: React.FC<TProps> = ({ id, title, onDelete }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleDeleteClick = () => {
-    handleDelete();
+  const handleDelete = () => {
+    onDelete();
     onClose();
   };
 
@@ -39,14 +39,14 @@ const BoardCard: React.FC<TProps> = ({ id, title, handleDelete }) => {
             sx={{ cursor: "pointer", mx: 1, transition: "0.3s" }}
             onClick={onOpen}
           />
+          <DeleteModal
+            title={title}
+            isOpen={isOpen}
+            onClose={onClose}
+            onClick={handleDelete}
+          />
         </Box>
       </Link>
-      <DeleteModal
-        boardTitle={title}
-        isOpen={isOpen}
-        onClose={onClose}
-        onSave={handleDeleteClick}
-      />
     </>
   );
 };

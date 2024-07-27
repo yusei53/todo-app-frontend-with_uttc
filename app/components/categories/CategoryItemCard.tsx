@@ -1,9 +1,9 @@
 import { Box, Text } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import DeleteModal from "../common/DeleteModal";
-import AddItemButtonBar from "./AddItemButtonBar";
-import OpenAddItemArea from "./OpenAddItemArea";
-import ItemCard from "./ItemCard";
+import AddItemButtonBar from "../items/AddItemButtonBar";
+import OpenAddItemArea from "../items/OpenAddItemArea";
+import ItemCard from "../items/ItemCard";
 import StandardCard from "../common/ StandardCard";
 import { ItemProps } from "@/app/types/type";
 

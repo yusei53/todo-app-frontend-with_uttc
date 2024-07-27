@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import CategoryCard from "./CategoryCard";
 import { CategoryProps } from "../../types/type";
-import CategoryCardContainer from "./CategoryCardContainer";
+import StandardCard from "./ StandardCard";
 import AddItemButtonBar from "../items/AddItemButtonBar";
 import OpenAddItemArea from "../items/OpenAddItemArea";
 
@@ -41,7 +41,7 @@ const CategoriesArea: React.FC<TProps> = ({
           />
         ))}
         {isOpen ? (
-          <CategoryCardContainer>
+          <StandardCard>
             <OpenAddItemArea
               title={"リストを追加"}
               placeholder={"リストのタイトルを入力"}
@@ -49,7 +49,7 @@ const CategoriesArea: React.FC<TProps> = ({
               onSave={handleSave}
               onClose={handleToggle}
             />
-          </CategoryCardContainer>
+          </StandardCard>
         ) : (
           <AddItemButtonBar
             title={"リストを追加"}

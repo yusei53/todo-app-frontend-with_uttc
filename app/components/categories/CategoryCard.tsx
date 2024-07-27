@@ -5,7 +5,7 @@ import ItemCard from "../items/ItemCard";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Loading from "../../loading";
 import { useCallback, useState } from "react";
-import CategoryCardContainer from "./CategoryCardContainer";
+import StandardCard from "./ StandardCard";
 import { createItems, fetchItems } from "@/app/api/items/queryFn";
 import AddItemButtonBar from "../items/AddItemButtonBar";
 import OpenAddItemArea from "../items/OpenAddItemArea";
@@ -82,7 +82,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
   if (isLoading) return <Loading />;
 
   return (
-    <CategoryCardContainer>
+    <StandardCard>
       <Box
         display={"flex"}
         justifyContent={"space-between"}
@@ -126,7 +126,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
       ) : (
         <AddItemButtonBar title={"カードを追加"} onOpen={handleToggle} />
       )}
-    </CategoryCardContainer>
+    </StandardCard>
   );
 };
 

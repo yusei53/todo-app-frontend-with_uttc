@@ -8,14 +8,14 @@ import {
   deleteBoard,
   fetchBoards,
 } from "@/app/api/boards/queryFn";
-import SideBarWithBoardsArea from "./SidebarWithBoardsArea";
+import SideBarWithBoardsArea from "./SidebarBoardsArea";
 
 // swrを使った場合
 // async function fetcher(key: string) {
 //   return fetch(key).then((res) => res.json() as Promise<BoardProps[] | null>);
 // }
 
-const SideBarTemplate = () => {
+const SidebarBoardsContainer = () => {
   const [newBoardName, setNewBoardName] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const queryClient = useQueryClient();
@@ -66,4 +66,4 @@ const SideBarTemplate = () => {
   );
 };
 
-export default SideBarTemplate;
+export default SidebarBoardsContainer;

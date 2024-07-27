@@ -15,7 +15,7 @@ type TProps = {
   handleDelete: (boardId: number) => void;
 };
 
-const SideBarWithBoardsArea: React.FC<TProps> = ({
+const SidebarBoardsArea: React.FC<TProps> = ({
   title,
   setNewBoardName,
   isOpen,
@@ -69,4 +69,4 @@ const SideBarWithBoardsArea: React.FC<TProps> = ({
   );
 };
 
-export default SideBarWithBoardsArea;
+export default SidebarBoardsArea;

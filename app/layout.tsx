@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Box } from "@chakra-ui/react";
 import Header from "./components/common/Header";
 import { Providers } from "./provider";
-import SideBarTemplate from "./components/boards/SidebarTemplate";
+import SideBarTemplate from "./components/boards/SidebarBoardsContainer";
 
 export const metadata: Metadata = {
   title: "uttc × PeachTech",

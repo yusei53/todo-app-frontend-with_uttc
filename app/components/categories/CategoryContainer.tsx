@@ -8,9 +8,9 @@ import Loading from "@/app/loading";
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useState, useCallback } from "react";
-import CategoriesArea from "../categories/CategoriesArea";
+import CategoriesArea from "./CategoriesArea";
 
-const BoardDetailsTemplate = () => {
+const CategoryContainer = () => {
   const searchParams = useSearchParams();
   const boardId = Number(searchParams.get("id"));
   const [newCategoryTitle, setNewCategoryTitle] = useState("");
@@ -18,14 +18,14 @@ const BoardDetailsTemplate = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleToggle = useCallback(() => {
+    setIsOpen((value) => !value);
+  }, []);
+
   const { isLoading, data } = useQuery({
     queryKey: ["categories", boardId],
     queryFn: () => fetchCategories(boardId),
   });
-
-  const handleToggle = useCallback(() => {
-    setIsOpen((value) => !value);
-  }, []);
 
   const createMutation = useMutation({
     mutationFn: ({
@@ -71,4 +71,4 @@ const BoardDetailsTemplate = () => {
   );
 };
 
-export default BoardDetailsTemplate;
+export default CategoryContainer;

@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Loading from "../../loading";
 import { useCallback, useState } from "react";
 import { createItems, fetchItems } from "@/app/api/items/queryFn";
-import CategoryItemCard from "../items/CategoryItemCard";
+import CategoryItemCard from "./CategoryItemCard";
 
 type CategoryCardProps = {
   categoryId: number;

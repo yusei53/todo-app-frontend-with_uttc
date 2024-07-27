@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import CategoryItemCardsContainer from "./CategoryItemCardsContainer";
+import CategoryItemCardsContainer from "../items/CategoryItemCardsContainer";
 import { CategoryProps } from "../../types/type";
 import StandardCard from "../common/ StandardCard";
 import AddItemButtonBar from "../items/AddItemButtonBar";

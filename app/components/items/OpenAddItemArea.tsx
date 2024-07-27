@@ -3,7 +3,7 @@ import { Box, Textarea } from "@chakra-ui/react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import CustomInputDatePicker from "./CustomInputDatePicker";
-import OpenAddItemButtonGroup from "./OpenAddItemButtonGroup";
+import OpenAddItemButtonGroup from "../common/OpenAddItemButtonGroup";
 // import ja from "date-fns/locale/ja";
 
 // 日本語ロケールを登録したいのにエラーが出るのでコメントアウト

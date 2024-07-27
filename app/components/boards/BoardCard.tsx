@@ -19,7 +19,7 @@ const BoardCard: React.FC<TProps> = ({ id, title, onDelete }) => {
 
   return (
     <>
-      <Link href={`/board/?id=${id}`}>
+      <Link href={`/todo-area/?id=${id}`}>
         <Box
           bg={"#EBECF0"}
           borderRadius={3}

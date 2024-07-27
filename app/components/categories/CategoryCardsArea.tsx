@@ -1,12 +1,12 @@
 import { Box } from "@chakra-ui/react";
-import CategoryCard from "./CategoryCard";
+import CategoryItemCardsContainer from "./CategoryItemCardsContainer";
 import { CategoryProps } from "../../types/type";
 import StandardCard from "../common/ StandardCard";
 import AddItemButtonBar from "../items/AddItemButtonBar";
 import OpenAddItemArea from "../items/OpenAddItemArea";
 
 type TProps = {
-  categoryData: CategoryProps[];
+  categories: CategoryProps[];
   isOpen: boolean;
   handleToggle: () => void;
   handleSave: () => void;
@@ -15,7 +15,7 @@ type TProps = {
 };
 
 const CategoriesArea: React.FC<TProps> = ({
-  categoryData,
+  categories,
   isOpen,
   handleToggle,
   handleSave,
@@ -32,8 +32,8 @@ const CategoriesArea: React.FC<TProps> = ({
         alignItems={"flex-start"}
         height={"100%"}
       >
-        {categoryData.map((category) => (
-          <CategoryCard
+        {categories.map((category) => (
+          <CategoryItemCardsContainer
             key={category.id}
             categoryId={category.id}
             categoryTitle={category.title}

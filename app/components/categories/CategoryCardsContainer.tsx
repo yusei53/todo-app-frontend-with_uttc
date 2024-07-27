@@ -61,7 +61,7 @@ const CategoryContainer = () => {
 
   return (
     <CategoryCardsArea
-      categoryData={data}
+      categories={data}
       isOpen={isOpen}
       handleChange={(e) => setNewCategoryTitle(e.target.value)}
       handleSave={handleSave}

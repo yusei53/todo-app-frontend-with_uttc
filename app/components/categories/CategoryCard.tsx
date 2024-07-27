@@ -5,7 +5,7 @@ import ItemCard from "../items/ItemCard";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Loading from "../../loading";
 import { useCallback, useState } from "react";
-import StandardCard from "./ StandardCard";
+import StandardCard from "../common/ StandardCard";
 import { createItems, fetchItems } from "@/app/api/items/queryFn";
 import AddItemButtonBar from "../items/AddItemButtonBar";
 import OpenAddItemArea from "../items/OpenAddItemArea";

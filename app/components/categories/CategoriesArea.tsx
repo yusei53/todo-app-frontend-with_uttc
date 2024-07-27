@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import CategoryCard from "./CategoryCard";
 import { CategoryProps } from "../../types/type";
-import StandardCard from "./ StandardCard";
+import StandardCard from "../common/ StandardCard";
 import AddItemButtonBar from "../items/AddItemButtonBar";
 import OpenAddItemArea from "../items/OpenAddItemArea";
 

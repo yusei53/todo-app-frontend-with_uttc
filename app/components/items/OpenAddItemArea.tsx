@@ -1,9 +1,14 @@
 import React from "react";
 import { Box, Textarea } from "@chakra-ui/react";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import CustomInputDatePicker from "./CustomInputDatePicker";
 import OpenAddItemButtonGroup from "./OpenAddItemButtonGroup";
+// import ja from "date-fns/locale/ja";
+
+// 日本語ロケールを登録したいのにエラーが出るのでコメントアウト
+// ↓こいつがあればwarningは出ない
+// registerLocale("ja", ja);
 
 type TProps = {
   placeholder: string;

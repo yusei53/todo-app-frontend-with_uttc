@@ -1,7 +1,7 @@
-import CategoryContainer from "../components/categories/CategoryContainer";
+import CategoryCardsContainer from "../components/categories/CategoryCardsContainer";
 
 const TodoAreaPage = () => {
-  return <CategoryContainer />;
+  return <CategoryCardsContainer />;
 };
 
 export default TodoAreaPage;

@@ -8,7 +8,7 @@ import Loading from "@/app/loading";
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useState, useCallback } from "react";
-import CategoriesArea from "./CategoriesArea";
+import CategoryCardsArea from "./CategoryCardsArea";
 
 const CategoryContainer = () => {
   const searchParams = useSearchParams();
@@ -60,7 +60,7 @@ const CategoryContainer = () => {
   if (!data) return <div>dataがありません</div>;
 
   return (
-    <CategoriesArea
+    <CategoryCardsArea
       categoryData={data}
       isOpen={isOpen}
       handleChange={(e) => setNewCategoryTitle(e.target.value)}

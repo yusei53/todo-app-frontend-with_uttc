@@ -10,18 +10,18 @@ type TProps = {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-  data: BoardProps[];
+  boards: BoardProps[];
   handleSave: () => void;
   handleDelete: (boardId: number) => void;
 };
 
-const SidebarBoardsArea: React.FC<TProps> = ({
+const SidebarBoardCardsArea: React.FC<TProps> = ({
   title,
   setNewBoardName,
   isOpen,
   onOpen,
   onClose,
-  data,
+  boards,
   handleSave,
   handleDelete,
 }) => {
@@ -57,16 +57,16 @@ const SidebarBoardsArea: React.FC<TProps> = ({
         onChange={(e) => setNewBoardName(e.target.value)}
         onSave={handleSave}
       />
-      {data.map((data: BoardProps) => (
+      {boards.map((board: BoardProps) => (
         <BoardCard
-          key={data.id}
-          id={data.id}
-          title={data.title}
-          onDelete={() => handleDelete(data.id)}
+          key={board.id}
+          id={board.id}
+          title={board.title}
+          onDelete={() => handleDelete(board.id)}
         />
       ))}
     </Box>
   );
 };
 
-export default SidebarBoardsArea;
+export default SidebarBoardCardsArea;

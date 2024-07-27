@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Box } from "@chakra-ui/react";
 import Header from "./components/common/Header";
 import { Providers } from "./provider";
-import SideBarTemplate from "./components/boards/SidebarBoardsContainer";
+import SidebarBoardCardsContainer from "./components/boards/SidebarBoardCardsContainer";
 
 export const metadata: Metadata = {
   title: "uttc × PeachTech",
@@ -20,7 +20,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <Box display={"flex"}>
-            <SideBarTemplate />
+            <SidebarBoardCardsContainer />
             {children}
           </Box>
         </Providers>

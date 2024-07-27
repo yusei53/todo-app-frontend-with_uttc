@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, useDisclosure } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { ItemProps } from "../../types/type";
 import ItemCard from "../items/ItemCard";
@@ -9,17 +9,20 @@ import CategoryCardContainer from "./CategoryCardContainer";
 import { createItems, fetchItems } from "@/app/api/items/queryFn";
 import AddItemButtonBar from "../items/AddItemButtonBar";
 import OpenAddItemArea from "../items/OpenAddItemArea";
+import DeleteModal from "../common/DeleteModal";
 
 type ItemCardProps = Pick<ItemProps, "id" | "title">;
 
 type CategoryCardProps = {
   categoryId: number;
   categoryTitle: string;
+  handleDelete: () => void;
 };
 
 const CategoryCard: React.FC<CategoryCardProps> = ({
   categoryId,
   categoryTitle,
+  handleDelete,
 }) => {
   const queryClient = useQueryClient();
 
@@ -27,10 +30,17 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
   const [itemContent, setItemContent] = useState<string>("");
   const Today = new Date();
   const [itemExpiredAt, setItemExpiredAt] = useState<Date>(Today);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isAddCardOpen, setIsAddCardOpen] = useState<boolean>(false);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleDeleteClick = () => {
+    handleDelete();
+    onClose();
+  };
 
   const handleToggle = useCallback(() => {
-    setIsOpen((value) => !value);
+    setIsAddCardOpen((value) => !value);
   }, []);
 
   const { isLoading, data } = useQuery({
@@ -52,7 +62,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
     }) => createItems(categoryId, itemTitle, itemContent, itemExpiredAt),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["items", categoryId] });
-      setIsOpen(false);
+      setIsAddCardOpen(false);
     },
   });
 
@@ -85,6 +95,13 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
           boxSize={3.5}
           _hover={{ transform: "scale(1.2)" }}
           sx={{ cursor: "pointer", mx: 2, transition: "0.3s" }}
+          onClick={onOpen}
+        />
+        <DeleteModal
+          title={categoryTitle}
+          isOpen={isOpen}
+          onClose={onClose}
+          onClick={handleDeleteClick}
         />
       </Box>
       <Box my={3}>
@@ -92,7 +109,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
           <ItemCard key={item.id} title={item.title} />
         ))}
       </Box>
-      {isOpen ? (
+      {isAddCardOpen ? (
         <OpenAddItemArea
           title={"カードを追加"}
           placeholder={"カードのタイトルを入力"}

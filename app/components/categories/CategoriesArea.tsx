@@ -10,6 +10,7 @@ type TProps = {
   isOpen: boolean;
   handleToggle: () => void;
   handleSave: () => void;
+  handleDelete: (categoryId: number) => void;
   handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
@@ -18,6 +19,7 @@ const CategoriesArea: React.FC<TProps> = ({
   isOpen,
   handleToggle,
   handleSave,
+  handleDelete,
   handleChange,
 }) => {
   return (
@@ -35,6 +37,7 @@ const CategoriesArea: React.FC<TProps> = ({
             key={category.id}
             categoryId={category.id}
             categoryTitle={category.title}
+            handleDelete={() => handleDelete(category.id)}
           />
         ))}
         {isOpen ? (

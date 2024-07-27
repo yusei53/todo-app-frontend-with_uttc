@@ -21,9 +21,9 @@ export const createCategory = async (
   return data;
 };
 
-export const deleteCategory = async (boardId: number) => {
+export const deleteCategory = async (categoryId: number) => {
   const { data } = await axios.delete(
-    `http://localhost:8083/categories?board_id=${boardId}`
+    `http://localhost:8083/categories/${categoryId}`
   );
   return data;
 };

@@ -58,8 +58,19 @@ const CategoryItemCardsContainer: React.FC<CategoryCardProps> = ({
     },
   });
 
-  const formatDate = (date: Date) => {
-    return date.toISOString().split("T")[0];
+  // https://zenn.dev/satoshi_tech/scraps/ca4a670a31f85f
+
+  // UTCとして保存するための関数
+  // const formatDateToUTC = (date: Date) => {
+  //   return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+  //     .toISOString()
+  //     .split("T")[0];
+  // };
+
+  // JSTとして保存するための関数
+  const formatDateToJST = (date: Date) => {
+    const jstOffset = 9 * 60 * 60000; // 9時間をミリ秒に変換
+    return new Date(date.getTime() + jstOffset).toISOString().split("T")[0];
   };
 
   const handleSave = () => {
@@ -67,7 +78,7 @@ const CategoryItemCardsContainer: React.FC<CategoryCardProps> = ({
       categoryId,
       itemTitle,
       itemContent,
-      itemExpiredAt: formatDate(itemExpiredAt),
+      itemExpiredAt: formatDateToJST(itemExpiredAt),
     });
   };
 

@@ -64,7 +64,12 @@ const CategoryItemCard: React.FC<TProps> = ({
     </Box>
     <Box my={3}>
       {items.map((item) => (
-        <ItemCard key={item.id} title={item.title} />
+        <ItemCard
+          key={item.id}
+          itemTitle={item.title}
+          itemContent={item.content}
+          expiredAt={item.expiredAt}
+        />
       ))}
     </Box>
     {isAddCardOpen ? (
